@@ -1,6 +1,6 @@
 import React from "react";
 import "animate.css";
-import Allorder_card from "../components/Allorder_card";
+import Allorder from "./Allorder";
 
 function Home() {
   document.title = "Home";
@@ -49,7 +49,7 @@ function Home() {
       </div>
     </div>
     <div>
-      <Allorder_card></Allorder_card>
+      <Allorder></Allorder>
     </div>
     </div>
 

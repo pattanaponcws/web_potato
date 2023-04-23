@@ -21,7 +21,7 @@ function Menu(props) {
         })
         .then(function(response){
             console.log(response.data)
-            
+            props.reload[1]((x)=>x+1)
             
         }).catch(function(response){
           console.log('error')

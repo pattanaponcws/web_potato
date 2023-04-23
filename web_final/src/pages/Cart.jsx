@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { HiTrash } from "react-icons/hi";
 import Checkout from "../components/Checkout";
 
-function Cart() {
+function Cart(props) {
   document.title = "Cart";
   const [cart, setcart] = useState([]);
   const [restslsit, setRestslsit] = useState([]);
@@ -66,7 +66,7 @@ function Cart() {
     fetchData();
     fetchData1();
     fetchData2();
-  }, []);
+  }, [props.reload[0]]);
 
   function remove(id) {
     axios({
@@ -78,7 +78,7 @@ function Cart() {
       },
     })
       .then((response) => {
-        window.location.reload(false);
+        props.reload[1]((x)=>x+1)
         //console.log(response.data);
       })
       .catch((err) => {

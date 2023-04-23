@@ -1,10 +1,11 @@
 import { CgMenu, CgClose } from "react-icons/cg";
 import { MdFastfood } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiUser } from "react-icons/hi";
 import { HiShoppingCart } from "react-icons/hi";
+import axios from "axios";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const paths = [
     { key: 1, name: "Home", path: "/" },
     { key: 2, name: "Orders", path: "/restaurant" },
@@ -14,6 +15,65 @@ const Navbar = () => {
   let [open, setOpen] = useState(false);
   let [drop, setDrop] = useState(false);
 
+  const [cart, setCart] = useState([]);
+  const [res, setRes] = useState([]);
+  let num=0;
+
+  const getData = () => {
+    axios({
+      method: "get",
+      url: "https://localhost:7057/api/GetCart",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => {
+        setCart(response.data);
+        //console.log(response.data);
+        //console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios({
+      method: "get",
+      url: "https://localhost:7057/api/restaurants",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => {
+        setRes(response.data);
+        //console.log(response.data);
+        //console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const Count = () => {
+    //console.log(res)
+    //console.log(cart)
+    res.forEach(r => {
+      for (let c=0;c< cart.length;c++) {
+        //console.log(cart[c])
+        if(r.restId==cart[c].menu.restaurants.restId)
+        {
+          num++;
+          break;
+        }
+      }
+      
+      
+    });
+  }
+  useEffect(() => {
+    getData();
+  }, [props.reload[0]]);
+  Count();
   return (
     <nav className="shadow-lg w-full fixed top-0 lef-0 z-50">
       <div className="md:flex items-center justify-between bg-white  py-[1rem] md:px-[6rem] px-[3rem]">
@@ -53,29 +113,45 @@ const Navbar = () => {
             <a href="\Cart">
               <button className="font-bold rounded-full bg-orange-600 text-xl text-white px-5 py-2  hover:bg-orange-700 duration-500">
                 <HiShoppingCart />
+                <span
+                  className="absolute w-[20px] h-[20px] bg-red-600 rounded-full flex justify-center items-center md:top-2 
+                md:right-[11.25rem] top-48 md:z-0 z-10 right-[16.3rem] "
+                >
+                  <p className="m-1 font-bold text-[0.7rem]">{num}</p>
+                </span>
               </button>
             </a>
           </li>
           <li className="md:ml-7 md:my-0 my-7 relative">
             <a onClick={() => setDrop(!drop)}>
-            <button className="font-bold bg-orange-600 text-xl text-white px-5 py-2 rounded-full hover:bg-orange-700 duration-500">
-            <HiUser/>
-            </button>
+              <button className="font-bold bg-orange-600 text-xl text-white px-5 py-2 rounded-full hover:bg-orange-700 duration-500">
+                <HiUser />
+              </button>
             </a>
-            {
-              drop==true?
-            <div  className=" lg:absolute bg-white rounded-md p-2 ">
-              <ul className=" space-y-2 lg:w-20">
-                <li>
-                  <a href="/Login" className="flex p-2 font-medium text-gray-500 rounded-md  hover:bg-gray-100 hover:text-black">Profile</a>
-                </li>
-                <li>
-                  <a onClick={()=>{localStorage.removeItem('token')}} className="flex p-2 font-medium text-gray-500 rounded-md  hover:bg-gray-100 hover:text-black">Logout</a>
-                </li>
-                
-              </ul>
-            </div>:null
-            }
+            {drop == true ? (
+              <div className=" lg:absolute bg-white rounded-md p-2 ">
+                <ul className=" space-y-2 lg:w-20">
+                  <li>
+                    <a
+                      href="/Login"
+                      className="flex p-2 font-medium text-gray-500 rounded-md  hover:bg-gray-100 hover:text-black"
+                    >
+                      Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                      }}
+                      className="flex p-2 font-medium text-gray-500 rounded-md  hover:bg-gray-100 hover:text-black"
+                    >
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            ) : null}
           </li>
         </ul>
       </div>
