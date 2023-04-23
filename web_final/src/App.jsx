@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar"
 import Order from "./pages/Order"
 import Home from "./pages/Home"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Cart from "./pages/Cart"
 import Menu_card from "./components/Menu_card"
 import Post from "./pages/Post"
 import Rest_card from "./components/Reat_card"
@@ -22,7 +21,10 @@ function App() {
         <Route path="/Signup" element={<Signup />} />
         <Route path="/restaurant" element={<Restaurant />} />
         <Route path="/restaurant/:id" element={<Order />} />
+<<<<<<< Updated upstream
         <Route path="/Cart" element={<Cart/>} />
+=======
+>>>>>>> Stashed changes
         <Route path="/Post" element={<Post/>} />
         <Route path="/Mc" element={<Menu_card/>} />
         <Route path="/Rc" element={<Rest_card/>} />
