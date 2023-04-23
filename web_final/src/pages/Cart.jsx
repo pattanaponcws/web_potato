@@ -86,7 +86,7 @@ function Cart() {
       });
   }
   return (
-    <div className="p-9 w-screen h-screen bg-base bg-cover  ">
+    <div className="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20">
       <div className=" pt-20 pb-10 font-bold text-xl md:text-2xl lg:text-3xl flex justify-center">
         Cart
       </div>
@@ -105,11 +105,14 @@ function Cart() {
           else
             return (
               <div className="flex justify-center flex-col bg-amber-100 rounded-2xl font-semibold">
+                <div className=" relative">
+
                 <img
-                  className=" h-40 w-full object-cover rounded-t-xl overflow-hidden"
+                  className="h-40 w-full object-cover rounded-t-xl overflow-hidden"
                   src={rest.restPic}
                   alt={rest.restName}
                 />
+                </div>
                 <div className="flex justify-center pt-2 text-sm sm:text-lg">
                   {rest.restName}
                 </div>
@@ -157,7 +160,7 @@ function Cart() {
       <div className="flex justify-center pt-5">
         <button
           type="button"
-          className="fixed z-90 bottom-10 py-2 px-5 bg-amber-100 hover:bg-orange-600 hover:text-amber-100  focus:ring-orange-600 focus:ring-offset-amber-200  text-orange-600  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg"
+          className="fixed z-90 bottom-10 py-2 px-5 bg-amber-100 shadow-xl border-2 border-amber-200 hover:bg-orange-600 hover:text-amber-100  focus:ring-orange-600 focus:ring-offset-amber-200  text-orange-600  transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg"
           onClick={() => setShowCheck(true)}
         >
           <div className="text-sm md:text-xl">Check Out</div>

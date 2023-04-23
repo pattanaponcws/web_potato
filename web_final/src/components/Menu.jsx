@@ -15,8 +15,8 @@ function Menu(props) {
             "Authorization":"Bearer "+localStorage.getItem('token')
             },
             data: JSON.stringify({
-                "MenuId": String(props.menu.menuId),
-                "NumFood": parseInt(Num),
+                "menuId": String(props.menu.menuId),
+                "numFood": parseInt(Num),
               })
         })
         .then(function(response){

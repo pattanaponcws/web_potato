@@ -7,7 +7,7 @@ import Home from "./pages/Home"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Cart from "./pages/Cart"
 import Menu_card from "./components/Menu_card"
-import Post_card from "./components/Post_card"
+import Post from "./pages/Post"
 import Rest_card from "./components/Reat_card"
 import Allorder_card from "./components/Allorder_card"
 function App() {
@@ -23,7 +23,7 @@ function App() {
         <Route path="/restaurant" element={<Restaurant />} />
         <Route path="/restaurant/:id" element={<Order />} />
         <Route path="/Cart" element={<Cart/>} />
-        <Route path="/Post" element={<Post_card/>} />
+        <Route path="/Post" element={<Post/>} />
         <Route path="/Mc" element={<Menu_card/>} />
         <Route path="/Rc" element={<Rest_card/>} />
         <Route path="/Ac" element={<Allorder_card/>} />

@@ -1,70 +1,58 @@
+import React from "react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { FiBell } from "react-icons/fi";
-import { FiDownload } from "react-icons/fi";
 import { HiTrash } from "react-icons/hi";
-import Card from "./Card";
-
-function Post_card() {
-  const [posts, setpost] = useState([]);
-  const [menu, setmenu] = useState([]);
-  const fetchData = () => {
+function remove(id){
     axios({
-      method: "get",
-      url: "https://localhost:7057/api/GetMyPost",
+      method: "delete",
+      url: "https://localhost:7057/api/RemovePost?id="+String(id),
       headers: { "Content-Type": "application/json" ,
       "Authorization":"Bearer "+localStorage.getItem('token')},
     })
       .then((response) => {
-        setpost(response.data);
+        window.location.reload(false);
         //console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  };
-  const fetchData2 = () => {
-    axios({
-      method: "get",
-      url: "https://localhost:7057/api/GetMyMenu",
-      headers: { "Content-Type": "application/json" ,
-      "Authorization":"Bearer "+localStorage.getItem('token')},
-    })
-      .then((response) => {
-        setmenu(response.data);
-        
-        //console.log(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  useEffect(() => {
-    fetchData();
-    fetchData2();
-  }, []);
+  }
+function Post_card({ post, menu }) {
+  let total = 0;
   return (
-    <div className="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20">
-      <a href="/">
-        <button className="fixed z-90 top-20 right-10 sm:right-6 border-t-4 font-bold border-b-4 border-r-4 border-orange-600 bg-amber-400 w-10 h-10  rounded-r-2xl  flex justify-center items-center text-white text-lg sm:text-xl hover:bg-orange-600  duration-300">
-          <FiBell />
-        </button>
-      </a>
-      <a href="/">
-        <button className="fixed z-90 top-20 right-20 sm:right-16 border-4 font-bold border-orange-600 bg-amber-400 w-10 h-10 rounded-l-2xl   flex justify-center items-center text-white text-lg sm:text-xl hover:bg-orange-600  duration-300">
-          <FiDownload />
-        </button>
-      </a>
-      <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-10 pt-20">
-        {
-          posts.map((post, index) => 
-          {
+    <div className="flex justify-center">
 
-            return(<Card post={post} menu={menu} />)
-          })
-        }
-        
+    <div className="bg-amber-100 rounded-2xl w-64 flex flex-col justify-center">
+      <img className=" rounded-t-2xl" src={post.restaurants.restPic} />
+      <div>
+        <h2 className="text-center text-lg sm:text-xl">
+          {post.restaurants.restName}
+        </h2>
+        <ul className="text-center p-4">
+          {menu.map((x, i) => {
+            if (x.post.postId != post.postId) return null;
+            total += x.price;
+            return (
+              <li className="flex justify-between items-center gap-x-3">
+                <div className="flex justify-between gap-x-2 text-base sm:text-lg ">
+                  <div>{x.countFood}X</div>
+                  <div>{x.menu.menuFood}</div>
+                </div>
+                <div className="text-base sm:text-lg">{x.price} $</div>
+              </li>
+            );
+          })}
+        </ul>
       </div>
+      <div className="flex justify-between p-4 border-t-2 border-amber-500 border-dashed text-base sm:text-lg ">
+        <div>Total Amount :</div>
+        <div>{total}$</div>
+      </div>
+      <div className="text-center text-2xl text-orange-500 ">
+        <button>
+          <HiTrash onClick={()=>remove(post.postId)}/>
+        </button>
+      </div>
+    </div>
     </div>
   );
 }
