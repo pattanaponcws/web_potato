@@ -21,10 +21,6 @@ function App() {
         <Route path="/Signup" element={<Signup />} />
         <Route path="/restaurant" element={<Restaurant />} />
         <Route path="/restaurant/:id" element={<Order />} />
-<<<<<<< Updated upstream
-        <Route path="/Cart" element={<Cart/>} />
-=======
->>>>>>> Stashed changes
         <Route path="/Post" element={<Post/>} />
         <Route path="/Mc" element={<Menu_card/>} />
         <Route path="/Rc" element={<Rest_card/>} />

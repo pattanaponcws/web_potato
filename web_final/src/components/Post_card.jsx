@@ -19,16 +19,10 @@ function remove(id){
 function Post_card({ post, menu }) {
   let total = 0;
   return (
-<<<<<<< Updated upstream
-    <div className="flex justify-center">
-
-    <div className="bg-amber-100 rounded-2xl w-64 flex flex-col justify-center">
-=======
     
     <div className="flex justify-center">
       
     <div className="bg-amber-100 rounded-2xl w-64 ">
->>>>>>> Stashed changes
       <img className=" rounded-t-2xl" src={post.restaurants.restPic} />
       <div>
         <h2 className="text-center text-lg sm:text-xl">
