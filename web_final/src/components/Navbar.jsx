@@ -1,5 +1,4 @@
 import { CgMenu, CgClose } from "react-icons/cg";
-import { MdFastfood } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { HiUser } from "react-icons/hi";
 import { HiShoppingCart } from "react-icons/hi";
@@ -18,6 +17,19 @@ const Navbar = (props) => {
   const [cart, setCart] = useState([]);
   const [res, setRes] = useState([]);
   let num=0;
+
+
+  let [onTop, setOntop] = useState(true);
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY == 0) {
+      setOntop(true);
+    } else {
+      setOntop(false);
+    }
+  });
+
+
 
   const getData = () => {
     axios({
@@ -75,11 +87,15 @@ const Navbar = (props) => {
   }, [props.reload[0]]);
   Count();
   return (
-    <nav className="shadow-lg w-full fixed top-0 lef-0 z-50">
-      <div className="md:flex items-center justify-between bg-white  py-[1rem] md:px-[6rem] px-[3rem]">
+    <nav className=" w-full fixed top-0 lef-0 z-50">
+       <div
+        className={`md:flex pb-20 items-center justify-between bg-light md:px-[6rem] px-[3rem] relative -translate-y-14 transition duration-1000 hover:translate-y-3 ${
+          onTop ? "translate-y-3" : ""
+        }` }
+      >
         <a href="/">
           <div className="font-bold text-2xl cursor-pointer flex items-center  text-orange-600">
-            🥔 Potato
+           🥔 Potato
           </div>
         </a>
         <div
@@ -91,7 +107,7 @@ const Navbar = (props) => {
         </div>
         <ul
           className={` md:flex md:items-center md:pb-0 pb-6 absolute md:static md:z-auto z-[-1] left-0 w-full
-            md:w-auto md:pl-0 pl-12 md:bg-transparent bg-white transition-all ease-in duration-500 md:border-b-0 border-b-2  ${
+            md:w-auto md:pl-0 pl-12 md:bg-transparent bg-light transition-all ease-in duration-500 md:border-b-0 border-b-2  ${
               open ? "top-10 opacity-100" : "top-[-490px]"
             }`}
         >
@@ -129,28 +145,28 @@ const Navbar = (props) => {
               </button>
             </a>
             {drop == true ? (
-              <div className=" lg:absolute bg-white rounded-md p-2 ">
-                <ul className=" space-y-2 lg:w-20">
-                  <li>
-                    <a
-                      href="/Login"
-                      className="flex p-2 font-medium text-gray-500 rounded-md  hover:bg-gray-100 hover:text-black"
-                    >
-                      Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      onClick={() => {
-                        localStorage.removeItem("token");
-                      }}
-                      className="flex p-2 font-medium text-gray-500 rounded-md  hover:bg-gray-100 hover:text-black"
-                    >
-                      Logout
-                    </a>
-                  </li>
-                </ul>
-              </div>
+             <div className=" md:absolute md:bg-white rounded-md p-2 mt-2">
+             <ul className=" space-y-2 lg:w-20">
+               <li>
+                 <a
+                   href="/Login"
+                   className="flex p-2 font-medium text-gray-500 rounded-md  hover:bg-gray-100 hover:text-black"
+                 >
+                   Profile
+                 </a>
+               </li>
+               <li>
+                 <a
+                   onClick={() => {
+                     localStorage.removeItem("token");
+                   }}
+                   className="flex p-2 font-medium text-gray-500 rounded-md  hover:bg-gray-100 hover:text-black"
+                 >
+                   Logout
+                 </a>
+               </li>
+             </ul>
+           </div>
             ) : null}
           </li>
         </ul>
