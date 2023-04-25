@@ -34,7 +34,7 @@ function Allorder_card({ item, menu }) {
           </div>
 
           {/* back card */}
-          <div className=" absolute inset-0 h-full w-full rounded-xl bg-black/90 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+          <div className=" absolute inset-0 h-full w-full rounded-xl bg-black/90 px-5  text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
             <div className="flex min-h-full flex-col items-center justify-center">
               <h1>รายการอาหาร</h1>
               <ul className="text-center px-4 py-2">
@@ -43,7 +43,7 @@ function Allorder_card({ item, menu }) {
                   total+=ls.price;
                   return (
                     <li className="flex justify-between items-center gap-x-3">
-                      <div className="flex justify-between gap-x-2 text-base sm:text-lg ">
+                      <div className="flex justify-between gap-x-2 text-base sm:text-lg">
                         <div>{ls.countFood} X</div>
                         <div>{ls.menu.menuFood}</div>
                       </div>
