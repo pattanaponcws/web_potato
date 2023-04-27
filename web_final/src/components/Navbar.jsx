@@ -26,7 +26,7 @@ const Navbar = (props) => {
     } else {
       setOntop(false);
     }
-    console.log(onTop);
+    
   });
 
   window.addEventListener("resize", () => {
@@ -38,7 +38,7 @@ const Navbar = (props) => {
   const getData = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/GetCart",
+      url: "https://localhost:7057/api/Cart",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),

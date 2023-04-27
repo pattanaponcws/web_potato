@@ -10,7 +10,7 @@ function Post() {
   const fetchData = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/GetMyPost",
+      url: "https://localhost:7057/api/MyPost",
       headers: { "Content-Type": "application/json" ,
       "Authorization":"Bearer "+localStorage.getItem('token')},
     })
@@ -25,7 +25,7 @@ function Post() {
   const fetchData2 = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/GetMyMenu",
+      url: "https://localhost:7057/api/MyPostmenu",
       headers: { "Content-Type": "application/json" ,
       "Authorization":"Bearer "+localStorage.getItem('token')},
     })
@@ -63,7 +63,8 @@ function Post() {
         {
           posts.map((post, index) => 
           {
-
+            console.log(post);
+            console.log(menu);
             return(<Post_card post={post} menu={menu} />)
           })
         }

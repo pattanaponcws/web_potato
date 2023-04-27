@@ -10,7 +10,7 @@ function Menu(props) {
     function AddtoCart (){
         axios({
             method: "post",
-            url: "https://localhost:7057/api/AddCart",
+            url: "https://localhost:7057/api/Cart",
             headers: {"Content-Type": "application/json", 
             "Authorization":"Bearer "+localStorage.getItem('token')
             },

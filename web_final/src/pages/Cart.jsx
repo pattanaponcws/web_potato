@@ -14,7 +14,7 @@ function Cart(props) {
   const fetchData = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/GetCart",
+      url: "https://localhost:7057/api/Cart",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -71,7 +71,7 @@ function Cart(props) {
   function remove(id) {
     axios({
       method: "delete",
-      url: "https://localhost:7057/api/Remove?id=" + String(id),
+      url: "https://localhost:7057/api/Cart/" + String(id),
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -172,6 +172,7 @@ function Cart(props) {
         menulsit={menulsit}
         onClose={handleOnClose}
         visible={showCheck}
+        reload={props.reload}
       />
     </div>
   );

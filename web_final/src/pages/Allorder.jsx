@@ -7,7 +7,7 @@ function Allorder() {
   const fetchData = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/GetPost",
+      url: "https://localhost:7057/api/Post",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -23,7 +23,7 @@ function Allorder() {
 
     axios({
       method: "get",
-      url: "https://localhost:7057/api/GetPostMenu",
+      url: "https://localhost:7057/api/PostMenu",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -51,6 +51,7 @@ function Allorder() {
 
       <div className="grid grid-cols-1 gap-16 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-10 pt-10 ">
         {posts.map((item, inxdex) => {
+          console.log(item);
           return <Allorder_card item={item} menu={menu}/>;
         })}
       </div>
