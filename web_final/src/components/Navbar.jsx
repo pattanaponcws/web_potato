@@ -160,7 +160,7 @@ const Navbar = (props) => {
                     <ul className=" space-y-2 lg:w-20">
                       <li>
                         <a
-                          href="/Login"
+                          href="/user"
                           className="flex p-2 font-medium text-gray-500 rounded-md  hover:bg-gray-100 hover:text-black"
                         >
                           Profile

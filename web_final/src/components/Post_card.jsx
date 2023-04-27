@@ -4,7 +4,7 @@ import { HiTrash } from "react-icons/hi";
 function remove(id){
     axios({
       method: "delete",
-      url: "https://localhost:7057/api/RemovePost?id="+String(id),
+      url: "https://localhost:7057/api/Post/"+String(id),
       headers: { "Content-Type": "application/json" ,
       "Authorization":"Bearer "+localStorage.getItem('token')},
     })
