@@ -11,6 +11,8 @@ import Post from "./pages/Post"
 import Rest_card from "./components/Reat_card"
 import Allorder_card from "./components/Allorder_card"
 import Cart from "./pages/Cart"
+import Select from "./pages/Select"
+import User from "./pages/User"
 function App() {
   const [reload, setReload] = useState(0);
 
@@ -28,7 +30,9 @@ function App() {
         <Route path="/Rc" element={<Rest_card/>} />
         <Route path="/Ac" element={<Allorder_card/>} />
         <Route path="/cart" element={<Cart reload={[reload, setReload]}/>} />
-        
+        <Route path="/sel" element={<Select/>}/>
+        <Route path="/user" element={<User/>}/>
+
       </Routes>
     </BrowserRouter>
   )

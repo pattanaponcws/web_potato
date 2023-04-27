@@ -5,12 +5,15 @@ module.exports = {
     extend: {
       colors: {
         res: "#FDE27B",
+        selmy:"#D9D9D9",
+        selre:"#F9E495",
       },
       
       backgroundImage: {
         login: "url('assets/login_bg.png')",
         home: "url('assets/home_bg.png')",
         base: "url('assets/base_bg.png')",
+        deliver: "url('assets/deliver.png')",
       },
     },
   },
