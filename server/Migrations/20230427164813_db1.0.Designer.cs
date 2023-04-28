@@ -11,8 +11,8 @@ using server;
 namespace server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230421155641_db3")]
-    partial class db3
+    [Migration("20230427164813_db1.0")]
+    partial class db10
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

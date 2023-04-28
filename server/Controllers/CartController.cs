@@ -21,12 +21,12 @@ public class CartController : ControllerBase
     }
 
    
-    [HttpPost("AddCart")]
-    public async Task<ActionResult<List<Menu>>> AddCart(AddCart add)
+    [HttpPost("Cart")]
+    public async Task<ActionResult<List<Cart>>> AddCart(AddCart add)
     {
         var httpRequest = _httpContextAccessor.HttpContext.Request;
         var authorizationHeader = httpRequest.Headers["Authorization"].ToString();
-            
+        //return Ok("555");
         if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
         {
             var tokenString = authorizationHeader.Substring("Bearer ".Length).Trim();
@@ -35,7 +35,7 @@ public class CartController : ControllerBase
             // Access the claims in the token
             var username = token.Payload["unique_name"];
             
-            var user = this._dbContext.Users.FirstOrDefault(o => o.Username == username);
+            var user = this._dbContext.Users.FirstOrDefault(o => o.Username == username||o.Email==username);
             var cart = new Cart();
             var menu = this._dbContext.Menus.FirstOrDefault(o=>(o.MenuId.ToString()==add.MenuId));
             cart.Menu = menu;
@@ -43,12 +43,13 @@ public class CartController : ControllerBase
             cart.Price = add.NumFood * Int32.Parse(menu.PriceFood) ;
             cart.CountFood = add.NumFood;
             _dbContext.Carts.Add(cart);
+            //return Ok(username);
             _dbContext.SaveChanges();
             return Ok(menu);
         }
         return Ok("no found token");
      }
-    [HttpDelete("Remove")]
+    [HttpDelete("Cart/{id}")]
     public IActionResult Remove(string id)
     {
         var httpRequest = _httpContextAccessor.HttpContext.Request;
@@ -86,8 +87,8 @@ public class CartController : ControllerBase
         return Ok("unsuccess");
     }
     
-    [HttpGet("GetCart")]
-    public async Task<ActionResult<List<User>>> GetCart()
+    [HttpGet("Cart")]
+    public async Task<ActionResult<List<Cart>>> GetCart()
     {
         var httpRequest = _httpContextAccessor.HttpContext.Request;
         var authorizationHeader = httpRequest.Headers["Authorization"].ToString();

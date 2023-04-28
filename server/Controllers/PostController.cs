@@ -10,18 +10,18 @@ namespace server.Controllers;
 [Route("/api")]
 public class PostController: ControllerBase
 {
-    private readonly ILogger<CartController> _logger;
+    
     private readonly ApplicationDbContext _dbContext;
     private readonly IHttpContextAccessor _httpContextAccessor;
-    public PostController(ILogger<CartController> logger, ApplicationDbContext dbContext,IHttpContextAccessor httpContextAccessor)
+    public PostController( ApplicationDbContext dbContext,IHttpContextAccessor httpContextAccessor)
     {
-        _logger = logger;
+        
         _dbContext = dbContext;
         _httpContextAccessor = httpContextAccessor;
     }
 
-    [HttpPost("GetPost")]
-    public async Task<ActionResult<List<Menu>>> GetPost()
+    [HttpGet("Post")]
+    public async Task<ActionResult<List<Post>>> GetPost()
     {
         
         var httpRequest = _httpContextAccessor.HttpContext.Request;
@@ -38,17 +38,71 @@ public class PostController: ControllerBase
             var user = this._dbContext.Users.FirstOrDefault(o => o.Username == username);
             var postAll = new List<Post>();
             var post = this._dbContext.Posts.Include(x=>x.User).Include(x=>x.Restaurants).ToList();
-            foreach (var item in post)
-            {
-                if( item.User==user&&item.Status=="inti")
-                postAll.Add(item); 
-            }
-            return Ok(postAll);
+             foreach (var item in post)
+             {
+                 if( item.User!=user&&item.Status=="use")
+                 postAll.Add(item); 
+             }
+             return Ok(postAll);
         }
         return Ok("no found token");
     }
-    [HttpGet("GetMyPost")]
-    public async Task<ActionResult<List<Menu>>> GetMyPost()
+    [HttpGet("Postmenu")]
+    public async Task<ActionResult<List<Post>>> GetPostmenu()
+    {
+        
+        var httpRequest = _httpContextAccessor.HttpContext.Request;
+        var authorizationHeader = httpRequest.Headers["Authorization"].ToString();
+            
+        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
+        {
+            var tokenString = authorizationHeader.Substring("Bearer ".Length).Trim();
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadJwtToken(tokenString);
+            // Access the claims in the token
+            var username = token.Payload["unique_name"];
+            
+            var user = this._dbContext.Users.FirstOrDefault(o => o.Username == username);
+            var PostmenuAll = new List<Postmenu>();
+            var post = this._dbContext.Postmenus.Include(x=>x.User).Include(x=>x.Post).Include(x=>x.Menu).ToList();
+            foreach (var item in post)
+            {
+                if( item.User!=user)
+                    PostmenuAll.Add(item); 
+            }
+            return Ok(PostmenuAll);
+        }
+        return Ok("no found token");
+    }
+    [HttpGet("MyPostmenu")]
+    public async Task<ActionResult<List<Post>>> GetMyPostmenu()
+    {
+        
+        var httpRequest = _httpContextAccessor.HttpContext.Request;
+        var authorizationHeader = httpRequest.Headers["Authorization"].ToString();
+            
+        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
+        {
+            var tokenString = authorizationHeader.Substring("Bearer ".Length).Trim();
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadJwtToken(tokenString);
+            // Access the claims in the token
+            var username = token.Payload["unique_name"];
+            
+            var user = this._dbContext.Users.FirstOrDefault(o => o.Username == username);
+            var PostmenuAll = new List<Postmenu>();
+            var post = this._dbContext.Postmenus.Include(x=>x.User).Include(x=>x.Post).Include(x=>x.Menu).ToList();
+            foreach (var item in post)
+            {
+                if( item.User==user)
+                    PostmenuAll.Add(item); 
+            }
+            return Ok(PostmenuAll);
+        }
+        return Ok("no found token");
+    }
+    [HttpGet("MyPost")]
+    public async Task<ActionResult<List<Post>>> GetMyPost()
     {
         
         var httpRequest = _httpContextAccessor.HttpContext.Request;
@@ -74,34 +128,8 @@ public class PostController: ControllerBase
         }
         return Ok("no found token");
     }
-    [HttpGet("GetMyMenu")]
-    public async Task<ActionResult<List<Menu>>> GetMyMenu()
-    {
-        
-        var httpRequest = _httpContextAccessor.HttpContext.Request;
-        var authorizationHeader = httpRequest.Headers["Authorization"].ToString();
-            
-        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
-        {
-            var tokenString = authorizationHeader.Substring("Bearer ".Length).Trim();
-            var handler = new JwtSecurityTokenHandler();
-            var token = handler.ReadJwtToken(tokenString);
-            // Access the claims in the token
-            var username = token.Payload["unique_name"];
-            
-            var user = this._dbContext.Users.FirstOrDefault(o => o.Username == username);
-            var postAll = new List<Postmenu>();
-            var postmenus = this._dbContext.Postmenus.Include(x=>x.Menu).Include(x=>x.User).Include(x=>x.Post).ToList();
-            foreach (var item in postmenus)
-            {
-                if( item.User==user)
-                    postAll.Add(item); 
-            }
-            return Ok(postAll);
-        }
-        return Ok("no found token");
-    }
-    [HttpDelete("RemovePost")]
+    
+    [HttpDelete("Post/{id}")]
     public IActionResult Remove(string id)
     {
         var httpRequest = _httpContextAccessor.HttpContext.Request;
@@ -125,17 +153,10 @@ public class PostController: ControllerBase
             return Ok("success");
         }
         return Ok("no found token");
-        // var item = this._DBContext.TblUsers.FirstOrDefault(o => o.username == username);
-        // if (item != null)
-        // {
-        //     this._DBContext.Remove(item);
-        //     this._DBContext.SaveChanges();
-        //     return Ok("success");
-        // }
-        return Ok("unsuccess");
+        
     }
-    [HttpPost("CreatePost")]
-    public async Task<ActionResult<List<Menu>>> createPost(CreatePost detail)
+    [HttpPost("Post")]
+    public async Task<ActionResult<List<Post>>> createPost(CreatePost detail)
     {
         
         var httpRequest = _httpContextAccessor.HttpContext.Request;
@@ -149,8 +170,8 @@ public class PostController: ControllerBase
             // Access the claims in the token
             var username = token.Payload["unique_name"];
             
-            var user = this._dbContext.Users.FirstOrDefault(o => o.Username == username);
-            var res = this._dbContext.Restaurants.FirstOrDefault(o => o.RestId.ToString()==detail.Restaurants);
+            var user = this._dbContext.Users.FirstOrDefault(o => o.Username == (string?)username)!;
+            var res = this._dbContext.Restaurants.FirstOrDefault(o => o.RestId.ToString()==detail.Restaurants)!;
             var post = new Post();
             post.User=user;
             post.Status="inti";
@@ -159,39 +180,24 @@ public class PostController: ControllerBase
             post.Restaurants = res;
             _dbContext.Posts.Add(post);
             _dbContext.SaveChanges();
-            var post_now = this._dbContext.Posts.Include(x=>x.User).FirstOrDefault(o => (o.User.Username == username&&o.Status=="inti"));
-            return Ok(post_now.PostId);
+            var postNow = this._dbContext.Posts.Include(x=>x.User).FirstOrDefault(o => (o.User.Username == (string?)username&&o.Status=="inti"&&o.Restaurants.RestId.ToString()==detail.Restaurants))!;
+            for (int i = 0; i < detail.Foodlist.Count; i++)
+            {
+                var postmenu = new Postmenu();
+                var menu = this._dbContext.Menus.FirstOrDefault(o => o.MenuId.ToString()==detail.Foodlist[i].MenuId)!;
+                postmenu.CountFood = detail.Foodlist[i].NumFood;
+                postmenu.Menu = menu;
+                postmenu.Post = postNow;
+                postmenu.User = user;
+                postmenu.Price = Int32.Parse(menu.PriceFood!) * detail.Foodlist[i].NumFood;
+                _dbContext.Postmenus.Add(postmenu);
+            }
+            postNow.Status = "use"; 
+            _dbContext.Posts.Update(post);
+            _dbContext.SaveChanges();
+            return Ok(detail.Foodlist.Count);
         }
         return Ok("no found token");
     }
-    [HttpPost("AddPost")]
-    public async Task<ActionResult<List<Menu>>> addPost(AddPost add)
-    {
-        var httpRequest = _httpContextAccessor.HttpContext.Request;
-        var authorizationHeader = httpRequest.Headers["Authorization"].ToString();
-            
-        if (!string.IsNullOrEmpty(authorizationHeader) && authorizationHeader.StartsWith("Bearer "))
-        {
-            var tokenString = authorizationHeader.Substring("Bearer ".Length).Trim();
-            var handler = new JwtSecurityTokenHandler();
-            var token = handler.ReadJwtToken(tokenString);
-            // Access the claims in the token
-            var username = token.Payload["unique_name"];
-            var user = this._dbContext.Users.FirstOrDefault(o => o.Username == username);
-            var menu = this._dbContext.Menus.FirstOrDefault(o => o.MenuId.ToString() == add.Menu);
-            var post = this._dbContext.Posts.FirstOrDefault(o => o.PostId.ToString() == add.PostId);
-            var postmenu = new Postmenu();
-            postmenu.CountFood= add.CountFood;
-            postmenu.Menu = menu;
-            postmenu.Post= post;
-            postmenu.User = user;
-            postmenu.Price = add.Price;
-            _dbContext.Postmenus.Add(postmenu);
-            post.Status="use";
-            _dbContext.Posts.Update(post);
-            _dbContext.SaveChanges();
-            return Ok(postmenu);
-        }
-        return Ok("no found token");
-     }
+    
 }

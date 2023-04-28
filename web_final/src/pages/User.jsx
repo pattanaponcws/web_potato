@@ -26,8 +26,8 @@ const User = () => {
     fetchData();
   }, []);
   return (
-    <div className="w-screen h-screen bg-cover flex justify-around bg-[url('https://sv1.picz.in.th/images/2023/04/27/ycNIzv.png')]">
-      <div className="pt-[150px]">
+    <div className="w-screen h-screen bg-cover  bg-[url('https://sv1.picz.in.th/images/2023/04/27/ycNIzv.png')]">
+      <div className="pt-[150px] flex flex-col justify-center items-center ">
         <div className="text-center">
           <button className="font-bold rounded-lg bg-orange-600 text-[30px] text-white px-5 py-2  hover:bg-orange-700 duration-500 text-center ">
             Account Setting
@@ -39,7 +39,7 @@ const User = () => {
         />
         Username :
         <input
-          class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="shadow appearance-none border rounded-2xl w-72 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="username"
           type="text"
           value={user.username}
@@ -50,7 +50,7 @@ const User = () => {
         />
         Display Name :
         <input
-          class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="shadow appearance-none border rounded-2xl w-72 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="username"
           type="text"
           value={user.displayname==null?"":user.displayname}
@@ -61,45 +61,29 @@ const User = () => {
         />
         Email :
         <input
-          class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="shadow appearance-none border rounded-2xl w-72 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="email"
           type="text"
           value={user.email}
         />
-        <label
-          class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5"
-          for="confirm-password"
-        />
-        Address:
-        <textarea
-          class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none"
-          id="confirm"
-          type="text"
-          value={user.address==null?"":user.address}
-          cols="30"
-          rows="6"
-        />
-      </div>
-      <div className="pt-[150px]">
-        <div>
-          <label
-            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5"
-            for="phone-number"
-          />
-          Phone Number :
-          <input
-            class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="text"
-            value={user.telephone==null?"":user.telephone}
-          />
-          <label
+         <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5"
             for="password"
           />
           Password :
           <input
-            class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="shadow appearance-none border rounded-2xl w-72 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="password"
+            type="password"
+            value={user.password}
+          />
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5"
+            for="password"
+          />
+          Comfirm Password :
+          <input
+            class="shadow appearance-none border rounded-2xl w-72 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
             value={user.password}
@@ -109,13 +93,9 @@ const User = () => {
               Save
             </button>
           </div>
-        </div>
-        <img
-          src="https://sv1.picz.in.th/images/2023/04/27/ycBBa2.png"
-          className=" h-[250px] w-[430px] translate-x-[150px] translate-y-[50px]"
-          alt=""
-        />
+        
       </div>
+    
     </div>
   );
 };

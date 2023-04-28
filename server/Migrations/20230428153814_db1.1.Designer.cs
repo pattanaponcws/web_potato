@@ -11,8 +11,8 @@ using server;
 namespace server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230418210043_db2")]
-    partial class db2
+    [Migration("20230428153814_db1.1")]
+    partial class db11
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,18 +28,17 @@ namespace server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("AccName")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("AccTel")
-                        .HasColumnType("longtext");
-
                     b.Property<Guid>("PostId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("AcceptId");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Accepts");
                 });
@@ -106,6 +105,9 @@ namespace server.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<Guid>("RestaurantsRestId")
+                        .HasColumnType("char(36)");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -118,6 +120,8 @@ namespace server.Migrations
                         .HasColumnType("char(36)");
 
                     b.HasKey("PostId");
+
+                    b.HasIndex("RestaurantsRestId");
 
                     b.HasIndex("UserId");
 
@@ -210,7 +214,15 @@ namespace server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("server.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Post");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("server.Models.Cart", b =>
@@ -245,11 +257,19 @@ namespace server.Migrations
 
             modelBuilder.Entity("server.Models.Post", b =>
                 {
+                    b.HasOne("server.Models.Restaurant", "Restaurants")
+                        .WithMany()
+                        .HasForeignKey("RestaurantsRestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("server.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Restaurants");
 
                     b.Navigation("User");
                 });

@@ -13,5 +13,5 @@ public class User
     public string? Password { get; set; }
     public string? Telephone { get; set; }
     public string? Address { get; set; }
-    public int Point { get; set; }
+    public string? Displayname { get; set; }
 }

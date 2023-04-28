@@ -37,7 +37,7 @@ public class AuthController : ControllerBase
         var tokendesc = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(
-                new Claim[]{ new Claim(ClaimTypes.Name, userCred.username)}
+                new Claim[]{ new Claim(ClaimTypes.Name, user.Username)}
                 ),Expires = DateTime.Now.AddSeconds(20),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenkey),SecurityAlgorithms.HmacSha256)
         };

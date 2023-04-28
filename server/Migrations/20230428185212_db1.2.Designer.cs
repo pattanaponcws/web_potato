@@ -11,8 +11,8 @@ using server;
 namespace server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230422165809_db4")]
-    partial class db4
+    [Migration("20230428185212_db1.2")]
+    partial class db12
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,18 +28,17 @@ namespace server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("AccName")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("AccTel")
-                        .HasColumnType("longtext");
-
                     b.Property<Guid>("PostId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("AcceptId");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Accepts");
                 });
@@ -187,14 +186,14 @@ namespace server.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Displayname")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Email")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Password")
                         .HasColumnType("longtext");
-
-                    b.Property<int>("Point")
-                        .HasColumnType("int");
 
                     b.Property<string>("Telephone")
                         .HasColumnType("longtext");
@@ -215,7 +214,15 @@ namespace server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("server.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Post");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("server.Models.Cart", b =>

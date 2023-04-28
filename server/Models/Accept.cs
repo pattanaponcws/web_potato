@@ -8,7 +8,6 @@ public class Accept
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid AcceptId { get; set; }
-    public string? AccName { get; set; }
-    public string? AccTel { get; set; }
+    public User User { get; set; } = null!;
     public Post Post { get; set; } = null!;
 }

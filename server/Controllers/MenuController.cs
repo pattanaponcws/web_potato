@@ -31,9 +31,9 @@ public class MenuController : ControllerBase
         return await _dbContext.Menus.Include(r => r.Restaurants).FirstOrDefaultAsync(m => m.MenuId == id);
     }
 
-    [HttpGet("menus/rest/{orderId}")]
-    public async Task<ActionResult<List<Menu>>> GetMenuByOrder(Guid orderId)
+    [HttpGet("menus/rest/{RestId}")]
+    public async Task<ActionResult<List<Menu>>> GetMenuByRestId(Guid RestId)
     {
-        return await _dbContext.Menus.Where(o=>o.Restaurants.RestId == orderId).Include(r => r.Restaurants).ToListAsync();
+        return await _dbContext.Menus.Where(o=>o.Restaurants.RestId == RestId).Include(r => r.Restaurants).ToListAsync();
     }
 }

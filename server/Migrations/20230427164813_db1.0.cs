@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace server.Migrations
 {
     /// <inheritdoc />
-    public partial class db : Migration
+    public partial class db10 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,11 +74,20 @@ namespace server.Migrations
                 {
                     PostId = table.Column<Guid>(type: "char(36)", nullable: false),
                     UserId = table.Column<Guid>(type: "char(36)", nullable: false),
-                    Status = table.Column<string>(type: "longtext", nullable: false)
+                    Status = table.Column<string>(type: "longtext", nullable: false),
+                    Tel = table.Column<string>(type: "longtext", nullable: false),
+                    Address = table.Column<string>(type: "longtext", nullable: false),
+                    RestaurantsRestId = table.Column<Guid>(type: "char(36)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Posts", x => x.PostId);
+                    table.ForeignKey(
+                        name: "FK_Posts_Restaurants_RestaurantsRestId",
+                        column: x => x.RestaurantsRestId,
+                        principalTable: "Restaurants",
+                        principalColumn: "RestId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Posts_Users_UserId",
                         column: x => x.UserId,
@@ -206,6 +215,11 @@ namespace server.Migrations
                 name: "IX_Postmenus_UserId",
                 table: "Postmenus",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Posts_RestaurantsRestId",
+                table: "Posts",
+                column: "RestaurantsRestId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_UserId",
