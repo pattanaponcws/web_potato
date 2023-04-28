@@ -13,7 +13,7 @@ function Select() {
           <div className=" absolute w-full top-64 z-30">
             <div className="flex justify-around ">
               <a
-                href=""
+                href="/Receive"
                 className=" text-center p-16 animate__animated animate__fadeInDown "
                 onMouseEnter={() => {
                   setHover1(true);

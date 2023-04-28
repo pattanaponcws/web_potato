@@ -48,9 +48,11 @@ function Home() {
         </a>
       </div>
     </div>
+    {localStorage.getItem("token") ? (
     <div>
       <Allorder></Allorder>
     </div>
+    ):null}
     </div>
 
   );

@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { HiTrash } from "react-icons/hi";
+import { BiChevronLeftCircle } from "react-icons/bi";
+
 function remove(id){
     axios({
       method: "delete",
@@ -54,6 +56,11 @@ function Post_card({ post, menu }) {
         </button>
       </div>
     </div>
+    <a href="/Sel">
+              <button className="fixed z-90 bottom-10 left-8 bg-amber-400 w-10 sm:w-14 h-10 sm:h-14 rounded-full flex justify-center items-center text-white text-2xl sm:text-4xl hover:bg-orange-600  duration-300">
+                <BiChevronLeftCircle />
+              </button>
+            </a>
     </div>
   );
 }

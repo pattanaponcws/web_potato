@@ -8,11 +8,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import React, { useState } from "react";
 import Menu_card from "./components/Menu_card"
 import Post from "./pages/Post"
-import Rest_card from "./components/Reat_card"
+import Rest_card from "./components/Rest_card"
 import Allorder_card from "./components/Allorder_card"
 import Cart from "./pages/Cart"
 import Select from "./pages/Select"
 import User from "./pages/User"
+import Recieve from "./pages/Recieve"
 function App() {
   const [reload, setReload] = useState(0);
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/cart" element={<Cart reload={[reload, setReload]}/>} />
         <Route path="/sel" element={<Select/>}/>
         <Route path="/user" element={<User/>}/>
+        <Route path="/Receive" element={<Recieve/>}/>
 
       </Routes>
     </BrowserRouter>

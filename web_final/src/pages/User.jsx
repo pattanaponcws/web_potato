@@ -4,49 +4,26 @@ const User = () => {
   // const pwShow = document,querySelector(".show"),createPW = document,querySelector("#password"),confirmPW = document,querySelector("#confirm-password")
   // pwShow.addEventListener("click",()=>{})
   const [user, setuser] = useState([]);
-  const [display, setdisplay] = useState([]);
-  const [email, setemail] = useState([]);
-  const [address, setaddress] = useState([]);
-  const [tel, settel] = useState([]);
-  const [menu, setmenu] = useState([]);
   const fetchData = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/MyPost",
+      url: "https://localhost:7057/api/userJWT",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
       .then((response) => {
-        setpost(response.data);
-        //console.log(response.data);
+        setuser(response.data);
+        
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  const fetchData2 = () => {
-    axios({
-      method: "get",
-      url: "https://localhost:7057/api/MyPostmenu",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => {
-        setmenu(response.data);
-
-        //console.log(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  console.log(user);
   useEffect(() => {
     fetchData();
-    fetchData2();
   }, []);
   return (
     <div className="w-screen h-screen bg-cover flex justify-around bg-[url('https://sv1.picz.in.th/images/2023/04/27/ycNIzv.png')]">
@@ -65,7 +42,7 @@ const User = () => {
           class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="username"
           type="text"
-          placeholder=""
+          value={user.username}
         />
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5"
@@ -76,7 +53,7 @@ const User = () => {
           class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="username"
           type="text"
-          placeholder=""
+          value={user.displayname==null?"":user.displayname}
         />
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5"
@@ -87,7 +64,7 @@ const User = () => {
           class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="email"
           type="text"
-          placeholder=""
+          value={user.email}
         />
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5"
@@ -98,7 +75,7 @@ const User = () => {
           class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none"
           id="confirm"
           type="text"
-          placeholder=""
+          value={user.address==null?"":user.address}
           cols="30"
           rows="6"
         />
@@ -114,7 +91,7 @@ const User = () => {
             class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
             type="text"
-            placeholder=""
+            value={user.telephone==null?"":user.telephone}
           />
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5"
@@ -124,8 +101,8 @@ const User = () => {
           <input
             class="shadow appearance-none border rounded-2xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
-            type="text"
-            placeholder=""
+            type="password"
+            value={user.password}
           />
           <div className="pt-10">
             <button className="font-bold rounded-lg bg-orange-600 text-[20px] text-white px-5 py-2  hover:bg-orange-700 duration-500 text-center ">

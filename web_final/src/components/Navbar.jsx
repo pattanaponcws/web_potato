@@ -89,7 +89,7 @@ const Navbar = (props) => {
   Count();
   return (
     <nav
-      className={`w-full fixed top-0 left-0 z-50 md:bg-light ${
+      className={`w-full fixed top-0 left-0 z-40 md:bg-light ${
         open
           ? " shadow-2xl transition duration-1000 ease-in-out bg-white bg-opacity-90 pb-72 "
           : " transition bg-light duration-1000 pb-72"
@@ -123,21 +123,25 @@ const Navbar = (props) => {
               open ? "top-10 opacity-100" : "top-[-490px]"
             }`}
         >
-          {paths.map((path) => (
+          {localStorage.getItem("token") ? (
+          paths.map((path) => (
             <li key={path.key} className="md:ml-7 md:my-0 my-7">
               <a
                 href={path.path}
                 className={`text-orange-600 hover:text-orange-700 text-xl font-bold duration-1000 ${
                   open
                     ? "ml-1 transition transform duration-200 translate-x-15 delay-1000"
-                    : ""
+                    : null
                 }`}
               >
                 {path.name}
               </a>
             </li>
-          ))}
+          ))
+          ):null}
+          
           <li className="md:ml-7 md:my-0">
+          {localStorage.getItem("token") ? (
             <a href="\Cart">
               <button className=" relative font-bold rounded-full bg-orange-600 text-xl text-white px-5 py-2  hover:bg-orange-700 duration-500">
                 <HiShoppingCart />
@@ -146,6 +150,7 @@ const Navbar = (props) => {
                 </span>
               </button>
             </a>
+          ):null}
           </li>
           <li className="md:ml-7 md:my-0 my-7 relative">
             {localStorage.getItem("token") ? (
