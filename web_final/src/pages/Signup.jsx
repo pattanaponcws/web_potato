@@ -53,7 +53,7 @@ const Signup = () => {
           icon: "success",
           title: "Success",
         });
-        window.location.replace("http://127.0.0.1:5173/Login");
+        window.location.replace("http://172.20.10.4:5173/Login");
       })
       .catch(function (response) {
         console.log(response);

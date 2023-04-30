@@ -9,6 +9,7 @@ function Menu(props) {
   const [Addcardalert, setAddcardalert] = useState(false);
   function AddtoCart() {
     props.setM(props.menu.menuFood);
+    props.setText("Add")
     props.setPush(true);
     // Swal.fire({
     //   icon: "success",
@@ -47,12 +48,12 @@ function Menu(props) {
       <div className=" px-5 py-2  bg-amber-300 rounded-b-2xl">
         <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
           <div>
-            <h2 className="md:mt-1 md:mx-2 text-mg lg:text-lg font-semibold text-gray-800 py-2">
+            <h2 className="md:mt-1 md:mx-2 text-base lg:text-lg font-semibold text-gray-800 py-2">
               {props.menu.menuFood}
             </h2>
           </div>
-          <div className=" inline-block py-2 text-mg lg:text-xl">
-            {props.menu.priceFood} <span>Bath</span>
+          <div className=" inline-block py-2 text-base lg:text-xl">
+            {props.menu.priceFood} <span>฿</span>
           </div>
         </div>
         <div className="flex flex-row justify-around">

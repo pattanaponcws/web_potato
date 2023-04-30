@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 
-const Alert = ({ m }) => {
+const Alert = ({ m,text }) => {
   return (
     <div className={``}>
       <div className=" rounded-lg  bg-emerald-500 opacity-90 p-3 text-[15px] w-[300px] text-white">
@@ -11,7 +11,7 @@ const Alert = ({ m }) => {
           </div>
           <div className="px-2 ">Success</div>
         </div>
-        <div className="mx-8 text-sm  ">Add : {m}</div>
+        <div className="mx-8 text-sm  ">{text} : {m}</div>
       </div>
     </div>
   );

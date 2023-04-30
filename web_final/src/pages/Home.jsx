@@ -7,7 +7,7 @@ function Home() {
   return (
     <div>
 
-    <div className="p-9 w-screen h-screen bg-home bg-cover flex lg:px-56 items-center font-mali">
+    <div className="p-9 w-screen h-screen bg-home bg-cover flex lg:px-56 items-center font-prom">
       <div className="pt-20 md:mx-10">
         <div className="pb-3">
           <div>
@@ -37,7 +37,7 @@ function Home() {
           food delivery service,you can choose the <br></br>
           food you want and place an order for delivery.
         </div>
-
+        {localStorage.getItem("token") ? (
         <a href="/restaurant">
           <button
             className=" my-10 flex justify-center items-center bg-amber-600 text-white rounded-full text-sm sm:text-lg lg:text-xl font-bold 
@@ -45,7 +45,7 @@ function Home() {
           >
             ORDER NOW
           </button>
-        </a>
+        </a>):null}
       </div>
     </div>
     {localStorage.getItem("token") ? (

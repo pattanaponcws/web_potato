@@ -89,13 +89,16 @@ function Cart(props) {
   }
   console.log(cart);
   return (
-    <div className="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20 font-mali ">
-      <div className=" pt-20 pb-10 font-bold text-xl md:text-2xl lg:text-3xl flex justify-center">
+    <div className="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20 font-prom ">
+      <div className=" pt-20 pb-10 flex justify-center">
+        <div className="bg-amber-600 text-center w-52 p-3 text-white rounded-full text-2xl font-semibold">
+
         Cart
+        </div>
       </div>
       {cart.length == 0 ? (
         <div className="w-screen text-center text-3xl  p-40">
-          Cart none
+          กรุณาเพิ่มสินค้าลงตระกร้าเพื่อทำการฝากซื้อ
         </div>
       ) : (
         ""

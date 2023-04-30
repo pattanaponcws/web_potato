@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 function Order(props) {
   const [m, setM] = useState("");
   const [push, setPush] = useState("");
+  const [text, setText] = useState("");
   document.title = "Order11";
   const params = useParams();
 
@@ -36,7 +37,7 @@ function Order(props) {
   }, []);
 
   return (
-    <div class="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20 font-mali">
+    <div class="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20 font-prom">
       <div className=" pt-20 pb-10 font-bold text-xl md:text-2xl lg:text-3xl flex justify-center">
         Menu
       </div>
@@ -49,6 +50,7 @@ function Order(props) {
               reload={props.reload}
               setM={setM}
               setPush={setPush}
+              setText={setText}
             />
           ))}
         </div>
@@ -56,7 +58,7 @@ function Order(props) {
       {push ? (
         <div className={` fixed  bottom-2 right-1 ${push?" animate-bounce transition -translate-y-10 duration-1000":""}`}>
           <div className="">
-            <Alert m={m} />
+            <Alert m={m} text={text} />
           </div>
         </div>
       ) : null}

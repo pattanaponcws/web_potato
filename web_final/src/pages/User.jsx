@@ -32,7 +32,7 @@ const User = () => {
     fetchData();
   }, []);
   return (
-    <div className="w-screen  min-h-screen bg-repeat-y bg-cover pb-20  bg-[url('https://sv1.picz.in.th/images/2023/04/27/ycNIzv.png')] font-mali">
+    <div className="w-screen  min-h-screen bg-repeat-y bg-cover pb-20  bg-[url('https://sv1.picz.in.th/images/2023/04/27/ycNIzv.png')] font-prom">
       <div className="pt-[100px] flex flex-col justify-center items-center ">
         <div className="">
           <button className="font-bold rounded-md bg-orange-600 text-[30px] text-white px-5 py-2  hover:bg-orange-700 duration-500 text-center ">

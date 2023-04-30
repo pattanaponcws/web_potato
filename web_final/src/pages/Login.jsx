@@ -49,7 +49,7 @@ const Login = () => {
       .then(function (response) {
         localStorage.setItem("token", response.data);
         //window.alert("Login Success");
-        window.location.replace("http://127.0.0.1:5173/");
+        window.location.replace("http://172.20.10.4:5173/");
       })
       .catch(function (response) {
         console.log(response);
