@@ -42,7 +42,7 @@ const Login = () => {
     }
     axios({
       method: "post",
-      url: "https://localhost:7057/Auth/Authenticate",
+      url: "http://172.20.10.4:5174/Auth/Authenticate",
       headers: { "Content-Type": "application/json" },
       data: state,
     })

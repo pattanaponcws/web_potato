@@ -44,7 +44,7 @@ const Signup = () => {
     console.log(state);
     axios({
       method: "POST",
-      url: "https://localhost:7057/api/Signup",
+      url: "http://172.20.10.4:5174/api/Signup",
       headers: { "Content-Type": "application/json" },
       data: state,
     })

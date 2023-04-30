@@ -1,25 +1,25 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Await } from "react-router-dom";
-function Checkout({ visible, onClose, cart, restslsit, menulsit ,reload}) {
+function Checkout({ visible, onClose, cart, restslsit, menulsit, reload }) {
   const [tel, setTel] = useState([]);
   const [address, setAddress] = useState([]);
 
   const handleOnClose = (e) => {
     if (e.target.id === "container") onClose();
   };
-  
+
   function remove(id) {
     axios({
       method: "delete",
-      url: "https://localhost:7057/api/Cart/" + String(id),
+      url: "http://172.20.10.4:5174/api/Cart/" + String(id),
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
       .then((response) => {
-        reload[1]((x)=>x+1)
+        reload[1]((x) => x + 1);
         //window.location.reload(false);
         //console.log(response.data);
       })
@@ -31,7 +31,7 @@ function Checkout({ visible, onClose, cart, restslsit, menulsit ,reload}) {
   const sendData = () => {
     restslsit.map((rest, index) => {
       const data = cart.filter((x) => x.menu.restaurants.restId == rest.restId);
-      if (data.length==0) return;
+      if (data.length == 0) return;
       let foodlist = [];
       const New_menulsit = menulsit.filter(
         (x) => x.restaurants.restId == rest.restId
@@ -57,19 +57,18 @@ function Checkout({ visible, onClose, cart, restslsit, menulsit ,reload}) {
         restaurants: rest.restId,
         foodlist: foodlist,
       });
-      
+
       axios({
         method: "post",
-        url: "https://localhost:7057/api/Post",
+        url: "http://172.20.10.4:5174/api/Post",
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
         data: data2,
-      }).then((response) => {})
-      remove(rest.restId)
+      }).then((response) => {});
+      remove(rest.restId);
     });
-    
   };
 
   if (!visible) return null;
@@ -77,7 +76,7 @@ function Checkout({ visible, onClose, cart, restslsit, menulsit ,reload}) {
     <div
       id="container"
       onClick={handleOnClose}
-      className="fixed inset-0 bg-opacity-30 bg-black backdrop-blur-sm flex justify-center items-center"
+      className="fixed inset-0 bg-opacity-30 bg-black backdrop-blur-sm flex justify-center items-center z-50 font-mali"
     >
       <div className="bg-white p-2 rounded">
         <div className="bg-white p-2 rounded w-72">
@@ -107,7 +106,10 @@ function Checkout({ visible, onClose, cart, restslsit, menulsit ,reload}) {
           <div className="text-center">
             <button
               className="px-5 py-2 bg-orange-500 text-white rounded hover:bg-orange-700 "
-              onClick={()=>{sendData();onClose();}}
+              onClick={() => {
+                sendData();
+                onClose();
+              }}
             >
               Check Out
             </button>

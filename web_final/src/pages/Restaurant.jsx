@@ -5,13 +5,14 @@ import { BiChevronLeftCircle } from "react-icons/bi";
 import OrderCard from "../components/OrderCard";
 
 function Restaurant() {
+  document.title = "Res";
   const [rests, setRests] = useState([]);
 
   const fetchData = () => {
     document.title = "Restaurant";
     axios({
       method: "get",
-      url: "https://localhost:7057/api/restaurants",
+      url: "http://172.20.10.4:5174/api/restaurants",
       headers: { "Content-Type": "application/json" },
     })
       .then((response) => {
@@ -29,15 +30,17 @@ function Restaurant() {
 
   return (
     <div class="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20">
-      <div className=" pt-20 pb-10 font-bold text-xl md:text-2xl lg:text-3xl flex justify-center">
+      <div className=" pt-20 pb-10 font-bold text-xl md:text-2xl lg:text-3xl flex justify-center font-mali">
         Restaurant
       </div>
    
-
-      <div class="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-10 ">
+      <div className="flex justify-center">
+      <div class="grid justify-center grid-cols-1 gap-20 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+        
+          
         {rests.map((rest, index) => (
-          <div class="overflow-hidden rounded-2xl bg-res " key={index}>
-            <div class="flex items-center h-48 w-full  overflow-hidden">
+          <div class="overflow-hidden rounded-2xl bg-res pb-2 " key={index}>
+            <div class="flex items-center h-72 w-72  overflow-hidden">
               <img src={rest.restPic} alt={rest.restName} />
             </div>
 
@@ -68,6 +71,7 @@ function Restaurant() {
             </a>
           </div>
         ))}
+        </div>
       </div>
     </div>
   );

@@ -8,6 +8,10 @@ module.exports = {
         selmy:"#D9D9D9",
         selre:"#F9E495",
       },
+
+      fontFamily:{
+        mali:['Mali'],
+      },
       
       backgroundImage: {
         login: "url('assets/login_bg.png')",

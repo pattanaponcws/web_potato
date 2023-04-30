@@ -8,7 +8,7 @@ function Allorder() {
   const fetchData = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/Post",
+      url: "http://172.20.10.4:5174/api/Post",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -22,7 +22,7 @@ function Allorder() {
 
     axios({
       method: "get",
-      url: "https://localhost:7057/api/PostMenu",
+      url: "http://172.20.10.4:5174/api/PostMenu",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),

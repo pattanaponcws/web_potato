@@ -7,7 +7,7 @@ function Home() {
   return (
     <div>
 
-    <div className="p-9 w-screen h-screen bg-home bg-cover flex lg:px-56 items-center">
+    <div className="p-9 w-screen h-screen bg-home bg-cover flex lg:px-56 items-center font-mali">
       <div className="pt-20 md:mx-10">
         <div className="pb-3">
           <div>

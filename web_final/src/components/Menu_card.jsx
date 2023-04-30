@@ -6,9 +6,6 @@ import { HiTrash } from "react-icons/hi";
 function Menu_card() {
   return (
     <div className="p-9 w-screen h-screen bg-base bg-cover  ">
-      
-
-
       <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-10 pt-20">
         <div className="bg-amber-100 rounded-2xl w-64 " >
          <img className=" rounded-t-2xl" src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Murrah_buffalo.JPG" />

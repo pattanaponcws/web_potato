@@ -6,7 +6,7 @@ function Receive_card({ menu, accept,setreload }) {
   function Cancel() {
     axios({
       method: "delete",
-      url: "https://localhost:7057/api/Cancel/"+accept.acceptId,
+      url: "http://172.20.10.4:5174/api/Cancel/"+accept.acceptId,
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -19,7 +19,7 @@ function Receive_card({ menu, accept,setreload }) {
   function Complete() {
     axios({
       method: "delete",
-      url: "https://localhost:7057/api/Complete/"+accept.acceptId,
+      url: "http://172.20.10.4:5174/api/Complete/"+accept.acceptId,
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -96,7 +96,7 @@ function Receive_card({ menu, accept,setreload }) {
                 </li>
 
                 {/* accept */}
-                <li className="">
+                <li className="flex flex-row justify-between">
                   <button onClick={Complete} className="mt-4 rounded-md bg-orange-400 py-1 px-2 text-sm hover:bg-orange-600">
                     Complete
                   </button>

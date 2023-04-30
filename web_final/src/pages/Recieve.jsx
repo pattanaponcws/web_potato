@@ -9,7 +9,7 @@ function Recieve() {
   const fetchData = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/Accept",
+      url: "http://172.20.10.4:5174/api/Accept",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -22,7 +22,7 @@ function Recieve() {
 
     axios({
       method: "get",
-      url: "https://localhost:7057/api/PostMenu",
+      url: "http://172.20.10.4:5174/api/PostMenu",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),

@@ -29,6 +29,12 @@ const Navbar = (props) => {
     
   });
 
+  window.addEventListener("transitionend",()=>{
+    if(!onTop){
+      setDrop(false)
+    }
+  })
+
   window.addEventListener("resize", () => {
     if (window.innerWidth > 769) {
       setOpen(false);
@@ -38,7 +44,7 @@ const Navbar = (props) => {
   const getData = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/Cart",
+      url: "http://172.20.10.4:5174/api/Cart",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -55,7 +61,7 @@ const Navbar = (props) => {
 
     axios({
       method: "get",
-      url: "https://localhost:7057/api/restaurants",
+      url: "http://172.20.10.4:5174/api/restaurants",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -97,13 +103,9 @@ const Navbar = (props) => {
     >
       <div
         className={` md:flex pb-16  items-center justify-between md:px-[6rem] px-[3rem] relative -translate-y-14 transition duration-1000 hover:translate-y-3 ${
-          onTop ? " translate-y-3" : null
+          onTop ? " translate-y-3 " : null
         } `}
-        onMouseOut={() => {
-          setTimeout(() => {
-            setDrop(false);
-          }, 3000);
-        }}
+
       >
         <a href="/">
           <div className="font-bold text-2xl cursor-pointer flex items-center  text-orange-600">
@@ -158,7 +160,7 @@ const Navbar = (props) => {
                 <button className="font-bold bg-orange-600 text-xl text-white px-5 py-2 rounded-full hover:bg-orange-700 duration-500">
                   <HiUser />
                 </button>
-                {drop == true ? (
+                {drop ? (
                   <div
                     className={` md:absolute md:bg-white rounded-md p-2 mt-2`}
                   >

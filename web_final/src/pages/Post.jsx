@@ -10,7 +10,7 @@ function Post() {
   const fetchData = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/MyPost",
+      url: "http://172.20.10.4:5174/api/MyPost",
       headers: { "Content-Type": "application/json" ,
       "Authorization":"Bearer "+localStorage.getItem('token')},
     })
@@ -25,7 +25,7 @@ function Post() {
   const fetchData2 = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/MyPostmenu",
+      url: "http://172.20.10.4:5174/api/MyPostmenu",
       headers: { "Content-Type": "application/json" ,
       "Authorization":"Bearer "+localStorage.getItem('token')},
     })
@@ -59,7 +59,7 @@ function Post() {
         </button>
       </a>
       </div>
-      <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-10">
+      <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-20">
         {
           posts.map((post, index) => 
           {

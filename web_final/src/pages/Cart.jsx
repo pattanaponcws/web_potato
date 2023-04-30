@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiTrash } from "react-icons/hi";
 import Checkout from "../components/Checkout";
+import Post_card from "../components/Post_card";
 
 function Cart(props) {
   document.title = "Cart";
@@ -10,11 +11,12 @@ function Cart(props) {
   const [restslsit, setRestslsit] = useState([]);
   const [menulsit, setMenulsit] = useState([]);
   const [showCheck, setShowCheck] = useState(false);
+  const [listnull, setListnull] = useState(true);
   const handleOnClose = () => setShowCheck(false);
   const fetchData = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/Cart",
+      url: "http://172.20.10.4:5174/api/Cart",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -31,7 +33,7 @@ function Cart(props) {
   const fetchData1 = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/restaurants",
+      url: "http://172.20.10.4:5174/api/restaurants",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -48,7 +50,7 @@ function Cart(props) {
   const fetchData2 = () => {
     axios({
       method: "get",
-      url: "https://localhost:7057/api/menus",
+      url: "http://172.20.10.4:5174/api/menus",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -71,26 +73,34 @@ function Cart(props) {
   function remove(id) {
     axios({
       method: "delete",
-      url: "https://localhost:7057/api/Cart/" + String(id),
+      url: "http://172.20.10.4:5174/api/Cart/" + String(id),
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
       .then((response) => {
-        props.reload[1]((x)=>x+1)
+        props.reload[1]((x) => x + 1);
         //console.log(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }
+  console.log(cart);
   return (
-    <div className="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20">
+    <div className="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20 font-mali ">
       <div className=" pt-20 pb-10 font-bold text-xl md:text-2xl lg:text-3xl flex justify-center">
         Cart
       </div>
-      <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-10 ">
+      {cart.length == 0 ? (
+        <div className="w-screen text-center text-3xl  p-40">
+          Cart none
+        </div>
+      ) : (
+        ""
+      )}
+      <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-[50px] lg:px-36">
         {restslsit.map((rest, index) => {
           const data = cart.filter(
             (x) => x.menu.restaurants.restId == rest.restId
@@ -104,63 +114,67 @@ function Cart(props) {
           if (data.length == 0) return null;
           else
             return (
-              <div className="flex justify-center flex-col bg-amber-100 rounded-2xl font-semibold">
-                <div className=" relative">
-
-                <img
-                  className="h-40 w-full object-cover rounded-t-xl overflow-hidden"
-                  src={rest.restPic}
-                  alt={rest.restName}
-                />
-                </div>
-                <div className="flex justify-center pt-2 text-sm sm:text-lg">
-                  {rest.restName}
-                </div>
-                <div className=" ">
-                  <div className="divide-y-2 divide-dashed divide-black">
-                    {menulsit.map((index, i) => {
-                      const temp = data.filter(
-                        (x) => x.menu.menuId == index.menuId
-                      );
-                      //console.log(temp);
-                      let count = 0;
-                      for (let index = 0; index < temp.length; index++) {
-                        count += temp[index].countFood;
-                      }
-                      if (temp.length == 0) return null;
-                      else
-                        return (
-                          <div className="flex flex-row justify-between mx-10 text-sm sm:text-lg p-2">
-                            <div className="flex">
-                              <div>{count} x</div>
-                              <div className="mx-2">{index.menuFood}</div>
-                            </div>
-                            <div className=" text-orange-500">
-                              {index.priceFood * count}
-                            </div>
-                          </div>
+              <div className="flex justify-center font-mali ">
+                <div className="bg-amber-100 rounded-2xl w-80 relative pb-24">
+                  <img className=" rounded-t-2xl" src={rest.restPic} />
+                  <div>
+                    <h2 className="text-center text-lg sm:text-xl pt-2">
+                      {rest.restName}
+                    </h2>
+                    <ul className="text-center p-4">
+                      {menulsit.map((index, i) => {
+                        const temp = data.filter(
+                          (x) => x.menu.menuId == index.menuId
                         );
-                    })}
-
-                    <div className=" flex flex-col sm:flex-row justify-between mx-10  p-1 text-sm sm:text-lg">
-                      <div>Total Amount :</div>
-                      <div>{total} บาท</div>
-                    </div>
+                        //console.log(temp);
+                        let count = 0;
+                        for (let index = 0; index < temp.length; index++) {
+                          count += temp[index].countFood;
+                        }
+                        if (temp.length == 0) return null;
+                        else {
+                          return (
+                            <div className="flex flex-row justify-between items-start md:items-center gap-x-3">
+                              <div className="flex justify-between gap-x-2 text-base sm:text-lg ">
+                                <div
+                                  className=" text-left md:text-center
+                                "
+                                >
+                                  {count}X
+                                </div>
+                                <div className=" text-left md:text-center">
+                                  {index.menuFood}
+                                </div>
+                              </div>
+                              <div className="text-base sm:text-lg">
+                                {index.priceFood * count} $
+                              </div>
+                            </div>
+                          );
+                        }
+                      })}
+                    </ul>
                   </div>
-                  <div className="flex justify-center text-2xl text-orange-600 p-2">
-                    <button onClick={() => remove(rest.restId)}>
-                      <HiTrash />
-                    </button>
+                  <div className=" absolute w-full bottom-1">
+                    <div className="flex justify-between  p-4 border-t-2 border-amber-500 border-dashed text-base sm:text-lg ">
+                      <div>Total Amount :</div>
+                      <div>{total}$</div>
+                    </div>
+                    <div className="text-center text-2xl text-orange-500 ">
+                      <button>
+                        <HiTrash onClick={() => remove(rest.restId)} />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             );
         })}
       </div>
-      <div className="flex justify-center pt-5">
+      <div className="flex justify-center pt-16 bottom-2">
         <button
           type="button"
-          className="fixed z-90 bottom-10 py-2 px-5 bg-amber-100 shadow-xl border-2 border-amber-200 hover:bg-orange-600 hover:text-amber-100  focus:ring-orange-600 focus:ring-offset-amber-200  text-orange-600  transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg"
+          className={` z-90 py-2 px-5 bg-orange-600 shadow-xl border-2 border-amber-200 hover:bg-amber-200 hover:text-orange-600  focus:ring-orange-600 focus:ring-offset-amber-200  text-amber-100  transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ${cart.length == 0?" invisible":" visible"}`}
           onClick={() => setShowCheck(true)}
         >
           <div className="text-sm md:text-xl">Check Out</div>
