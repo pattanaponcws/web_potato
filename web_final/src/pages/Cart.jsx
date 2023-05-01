@@ -90,19 +90,29 @@ function Cart(props) {
   console.log(cart);
   return (
     <div className="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20 font-prom ">
-      <div className=" pt-20 pb-10 flex justify-center">
-        <div className="bg-amber-600 text-center w-52 p-3 text-white rounded-full text-2xl font-semibold">
-
-        Cart
-        </div>
+      <div className=" pt-20  flex justify-center text-center font-prom">
+        <div className=" bg-orange-600 text-white text-2xl w-52 p-2 rounded-xl">Cart</div>
       </div>
+     
       {cart.length == 0 ? (
-        <div className="w-screen text-center text-3xl  p-40">
+        <div>
+        <div className="w-screen text-center text-3xl pt-40 pb-10">
           กรุณาเพิ่มสินค้าลงตระกร้าเพื่อทำการฝากซื้อ
+        </div>
+        <div className=" flex justify-center">
+          <a href="/restaurant">
+
+        <button className="py-2 px-5 bg-orange-600 shadow-xl border-2 border-amber-200 hover:bg-amber-200 hover:text-orange-600  focus:ring-orange-600 focus:ring-offset-amber-200  text-amber-100  transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full ">
+          Order now
+        </button>
+          </a>
+
+        </div>
         </div>
       ) : (
         ""
       )}
+
       <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-[50px] lg:px-36">
         {restslsit.map((rest, index) => {
           const data = cart.filter(

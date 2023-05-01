@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Recieve_card from "../components/Receive_card";
 import { BiChevronLeftCircle } from "react-icons/bi";
+import { FiBell } from "react-icons/fi";
+import { FiDownload } from "react-icons/fi";
+
 function Recieve() {
   const [menu, setmenu] = useState([]);
   const [accept, setaccept] = useState([]);
@@ -45,6 +48,18 @@ function Recieve() {
     <div className="w-screen bg-base  min-h-screen bg-repeat-y bg-cover pb-20">
       <div className=" pt-24 font-bold text-xl md:text-2xl lg:text-3xl flex justify-center">
         Receiving Order
+      </div>
+      <div className=" my-14">
+        <button  href="/" className="fixed z-50 top-20 right-10 sm:right-6 border-t-4 font-bold border-b-4 border-r-4 border-orange-600 bg-amber-400 w-10 h-10  rounded-r-2xl  flex justify-center items-center text-white text-lg sm:text-xl hover:bg-orange-600  duration-300">
+      <a href="/Post">
+          <FiBell />
+      </a>
+        </button>
+      <a href="/Receive">
+        <button className="fixed z-50 top-20 right-20 sm:right-16 border-4 font-bold border-orange-600 bg-amber-400 w-10 h-10 rounded-l-2xl   flex justify-center items-center text-white text-lg sm:text-xl hover:bg-orange-600  duration-300">
+          <FiDownload />
+        </button>
+      </a>
       </div>
 
       <div className="grid grid-cols-1 gap-16 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 px-10 pt-10 ">

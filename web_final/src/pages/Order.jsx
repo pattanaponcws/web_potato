@@ -38,9 +38,10 @@ function Order(props) {
 
   return (
     <div class="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20 font-prom">
-      <div className=" pt-20 pb-10 font-bold text-xl md:text-2xl lg:text-3xl flex justify-center">
-        Menu
+         <div className=" pt-20  flex justify-center text-center font-prom">
+        <div className=" bg-orange-600 text-white text-2xl w-52 p-2 rounded-xl">Menu</div>
       </div>
+        <div className="text-center pb-10 text-lg pt-3">**วันนี้อยากทานอะไรดี**</div>
       <div className="">
         <div class="grid grid-cols-1 gap-14 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-10 lg:px-40">
           {menus.map((menu, index) => (

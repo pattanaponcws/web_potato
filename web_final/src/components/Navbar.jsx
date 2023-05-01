@@ -25,19 +25,15 @@ const Navbar = (props) => {
       setOntop(true);
     } else {
       setOntop(false);
+      setDrop(false);
+      setOpen(false);
     }
-    
   });
-
-  window.addEventListener("transitionend",()=>{
-    if(!onTop){
-      setDrop(false)
-    }
-  })
 
   window.addEventListener("resize", () => {
     if (window.innerWidth > 769) {
       setOpen(false);
+      setDrop(false)
     }
   });
 
@@ -89,23 +85,29 @@ const Navbar = (props) => {
       }
     });
   };
+
+  useEffect(() => {
+    setOntop(true);
+  }, [drop]);
   useEffect(() => {
     getData();
   }, [props.reload[0]]);
   Count();
+  const [aof, setAof] = useState(true);
+  console.log(drop);
+
   return (
     <nav
-      className={`w-full fixed top-0 left-0 z-40 md:bg-light ${
+      className={`w-full fixed left-0 z-40 shadow-xl md:shadow-none  bg-white opacity-100 md:opacity-100 md:bg-transparent  ${
         open
-          ? " shadow-2xl transition duration-1000 ease-in-out bg-white bg-opacity-90 pb-72 "
-          : " transition bg-light duration-1000 pb-72"
-      }${drop ? "pb-96" : null}`}
+          ? " transition duration-1000 ease-in-out  pb-72"
+          : " transition bg-light duration-1000 pb-0"
+      }${drop ? "pb-[104px] bg-white" : null}`}
     >
       <div
-        className={` md:flex pb-16  items-center justify-between md:px-[6rem] px-[3rem] relative -translate-y-14 transition duration-1000 hover:translate-y-3 ${
-          onTop ? " translate-y-3 " : null
+        className={` md:flex mt-2 pb-2 md:pb-10  items-center justify-between md:px-[6rem] px-[3rem] relative  md:-top-12  transition duration-1000 md:hover:translate-y-12 ${
+          onTop ? "md:translate-y-12" : ""
         } `}
-
       >
         <a href="/">
           <div className="font-bold text-2xl cursor-pointer flex items-center  text-orange-600">
@@ -114,45 +116,50 @@ const Navbar = (props) => {
         </a>
         <div
           className="text-orange-600 absolute right-8 top-0 text-3xl cursor-pointer md:hidden"
-          onClick={() => setOpen(!open)}
+          onClick={() => {
+            setOpen(!open);
+            if (open === false) {
+              setDrop(false);
+            }
+          }}
         >
           {!open && <CgMenu></CgMenu>}
           {open && <CgClose></CgClose>}
         </div>
         <ul
-          className={` md:flex md:items-center md:pb-0 pb-6 absolute md:static md:z-auto z-[-1] left-0 w-full
+          className={`md:flex md:items-center md:pb-0 pb-0 absolute md:static md:z-auto z-[-1] left-0 w-full
             md:w-auto md:pl-0 pl-12 md:bg-transparent md:bg-ligh transition-all ease-in duration-500  ${
-              open ? "top-10 opacity-100" : "top-[-490px]"
+              open ? "top-5 opacity-100 bg-white" : "top-[-490px]"
             }`}
         >
-          {localStorage.getItem("token") ? (
-          paths.map((path) => (
-            <li key={path.key} className="md:ml-7 md:my-0 my-7">
-              <a
-                href={path.path}
-                className={`text-orange-600 hover:text-orange-700 text-xl font-bold duration-1000 ${
-                  open
-                    ? "ml-1 transition transform duration-200 translate-x-15 delay-1000"
-                    : null
-                }`}
-              >
-                {path.name}
-              </a>
-            </li>
-          ))
-          ):null}
-          
+          {localStorage.getItem("token")
+            ? paths.map((path) => (
+                <li key={path.key} className="md:ml-7 md:my-0 my-7">
+                  <a
+                    href={path.path}
+                    className={`text-orange-600 hover:text-orange-700 text-xl font-bold duration-1000 ${
+                      open
+                        ? "ml-1 transition transform duration-200 translate-x-15 delay-1000"
+                        : null
+                    }`}
+                  >
+                    {path.name}
+                  </a>
+                </li>
+              ))
+            : null}
+
           <li className="md:ml-7 md:my-0">
-          {localStorage.getItem("token") ? (
-            <a href="\Cart">
-              <button className=" relative font-bold rounded-full bg-orange-600 text-xl text-white px-5 py-2  hover:bg-orange-700 duration-500">
-                <HiShoppingCart />
-                <span className="absolute w-[20px] h-[20px] bg-red-600 rounded-full flex justify-center items-center md:-top-1 md:right-[1px] bottom-5 right-[1px] md:z-0 z-10">
-                  <p className="m-1 font-bold text-[0.7rem]">{num}</p>
-                </span>
-              </button>
-            </a>
-          ):null}
+            {localStorage.getItem("token") ? (
+              <a href="\Cart">
+                <button className=" relative font-bold rounded-full bg-orange-600 text-xl text-white px-5 py-2  hover:bg-orange-700 duration-500">
+                  <HiShoppingCart />
+                  <span className="absolute w-[20px] h-[20px] bg-red-600 rounded-full flex justify-center items-center md:-top-1 md:right-[1px] bottom-5 right-[1px] md:z-0 z-10">
+                    <p className="m-1 font-bold text-[0.7rem]">{num}</p>
+                  </span>
+                </button>
+              </a>
+            ) : null}
           </li>
           <li className="md:ml-7 md:my-0 my-7 relative">
             {localStorage.getItem("token") ? (
@@ -162,9 +169,9 @@ const Navbar = (props) => {
                 </button>
                 {drop ? (
                   <div
-                    className={` md:absolute md:bg-white rounded-md p-2 mt-2`}
+                    className={` absolute md:bg-white rounded-md p-2 mt-2 mdborder -top-5 left-14 md:top-9 md:left-0`}
                   >
-                    <ul className=" space-y-2 lg:w-20">
+                    <ul className=" lg:w-20 flex flex-row md:flex-col">
                       <li>
                         <a
                           href="/user"
@@ -190,11 +197,22 @@ const Navbar = (props) => {
                 )}
               </a>
             ) : (
-              <a onClick={() => setDrop(!drop)} href="/Login">
-                <button className="font-bold bg-orange-600 text-l text-white px-5 py-2 rounded-full hover:bg-orange-700 duration-500">
-                  Login
-                </button>
-              </a>
+              <ul className="space-y-2 md:space-y-0 md:flex md:space-x-2 ">
+                <li>
+                  <a onClick={() => setDrop(!drop)} href="/Signup">
+                    <button className="font-bold bg-orange-600 text-l text-white px-5 py-2 rounded-full hover:bg-orange-700 duration-500">
+                      Sing up
+                    </button>
+                  </a>
+                </li>
+                <li>
+                  <a onClick={() => setDrop(!drop)} href="/Login">
+                    <button className="font-bold bg-orange-600 text-l text-white px-5 py-2 rounded-full hover:bg-orange-700 duration-500">
+                      Login
+                    </button>
+                  </a>
+                </li>
+              </ul>
             )}
           </li>
         </ul>

@@ -49,11 +49,11 @@ function Post() {
       </div>
       <div className=" my-14">
         <button  href="/" className="fixed z-50 top-20 right-10 sm:right-6 border-t-4 font-bold border-b-4 border-r-4 border-orange-600 bg-amber-400 w-10 h-10  rounded-r-2xl  flex justify-center items-center text-white text-lg sm:text-xl hover:bg-orange-600  duration-300">
-      <a href="/">
+      <a href="/Post">
           <FiBell />
       </a>
         </button>
-      <a href="/">
+      <a href="/Receive">
         <button className="fixed z-50 top-20 right-20 sm:right-16 border-4 font-bold border-orange-600 bg-amber-400 w-10 h-10 rounded-l-2xl   flex justify-center items-center text-white text-lg sm:text-xl hover:bg-orange-600  duration-300">
           <FiDownload />
         </button>

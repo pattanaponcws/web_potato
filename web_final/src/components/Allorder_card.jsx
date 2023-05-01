@@ -10,24 +10,24 @@ function Allorder_card({ item, menu,setreload, setR  ,setPush ,setText}) {
     setR(item.restaurants.restName);
     setPush(true);
     setText("Accept");
-    // axios({
-    //   method: "post",
-    //   url: "http://172.20.10.4:5174/api/Accept",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: "Bearer " + localStorage.getItem("token"),
-    //   },
-    //   data: JSON.stringify({
-    //     post: item.postId
-    //   }),
-    // })
-    //   .then(function (response) {
+    axios({
+      method: "post",
+      url: "http://172.20.10.4:5174/api/Accept",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      data: JSON.stringify({
+        post: item.postId
+      }),
+    })
+      .then(function (response) {
         
-    //     setreload((x) => x + 1);
-    //   })
-    //   .catch(function (response) {
-    //     //console.log("error");
-    //   });
+        setreload((x) => x + 1);
+      })
+      .catch(function (response) {
+        //console.log("error");
+      });
     return;
   }
   return (
