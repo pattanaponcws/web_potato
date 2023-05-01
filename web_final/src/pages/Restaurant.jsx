@@ -33,13 +33,14 @@ function Restaurant() {
       <div className=" pt-20  flex justify-center text-center font-prom">
         <div className=" bg-orange-600 text-white text-2xl w-52 p-2 rounded-xl">Restaurant</div>
       </div>
-        <div className="text-center pb-10 text-lg pt-3">**กรุณาเลือกร้านอาหารเพื่อทำการฝากซื้อ**</div>
+        <div className="text-center pb-10 text-lg pt-3">กรุณาเลือกร้านอาหารเพื่อทำการฝากซื้อ</div>
 
       <div className="flex justify-center">
-        <div class="grid justify-center grid-cols-1 gap-20 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+        <div class="grid justify-center grid-cols-1 gap-20 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-10 lg:px-40">
           {rests.map((rest, index) => (
+            
             <div class="overflow-hidden rounded-2xl bg-res pb-2 " key={index}>
-              <div class="flex items-center h-72 w-72  overflow-hidden">
+              <div class="flex items-center h-72 w-full  overflow-hidden">
                 <img src={rest.restPic} alt={rest.restName} />
               </div>
 

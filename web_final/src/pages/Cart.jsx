@@ -90,16 +90,22 @@ function Cart(props) {
   console.log(cart);
   return (
     <div className="w-screen  bg-base min-h-screen bg-repeat-y bg-cover pb-20 font-prom ">
-      <div className=" pt-20  flex justify-center text-center font-prom">
-        <div className=" bg-orange-600 text-white text-2xl w-52 p-2 rounded-xl">Cart</div>
-      </div>
-     
+
+    {cart.length >=1 ?(
+       <div className=" pt-20 pb-10 flex justify-center text-center font-prom">
+       <div className=" bg-orange-600 text-white text-2xl  w-52 p-2 rounded-xl">Cart</div>
+     </div> ):(""
+    )}
       {cart.length == 0 ? (
-        <div>
-        <div className="w-screen text-center text-3xl pt-40 pb-10">
-          กรุณาเพิ่มสินค้าลงตระกร้าเพื่อทำการฝากซื้อ
-        </div>
-        <div className=" flex justify-center">
+        <div className="flex flex-col justify-center items-center h-screen">
+          <div className="text-gray-700 text-5xl pt-4">
+          No products yet. 
+
+          </div>
+          <div className=" text-gray-500 text-3xl pt-4 pb-4">
+
+          Please order now.
+          </div>
           <a href="/restaurant">
 
         <button className="py-2 px-5 bg-orange-600 shadow-xl border-2 border-amber-200 hover:bg-amber-200 hover:text-orange-600  focus:ring-orange-600 focus:ring-offset-amber-200  text-amber-100  transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full ">
@@ -108,11 +114,11 @@ function Cart(props) {
           </a>
 
         </div>
-        </div>
       ) : (
         ""
       )}
 
+      
       <div className="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-[50px] lg:px-36">
         {restslsit.map((rest, index) => {
           const data = cart.filter(
@@ -127,8 +133,8 @@ function Cart(props) {
           if (data.length == 0) return null;
           else
             return (
-              <div className="flex justify-center font-mali ">
-                <div className="bg-amber-100 rounded-2xl w-80 relative pb-24">
+              <div className="flex justify-center font-prom ">
+                <div className="bg-amber-200 rounded-2xl w-80 relative pb-24">
                   <img className=" rounded-t-2xl" src={rest.restPic} />
                   <div>
                     <h2 className="text-center text-lg sm:text-xl pt-2">
@@ -160,7 +166,7 @@ function Cart(props) {
                                 </div>
                               </div>
                               <div className="text-base sm:text-lg">
-                                {index.priceFood * count} $
+                                {index.priceFood * count} ฿
                               </div>
                             </div>
                           );
@@ -171,7 +177,7 @@ function Cart(props) {
                   <div className=" absolute w-full bottom-1">
                     <div className="flex justify-between  p-4 border-t-2 border-amber-500 border-dashed text-base sm:text-lg ">
                       <div>Total Amount :</div>
-                      <div>{total}$</div>
+                      <div>{total}฿</div>
                     </div>
                     <div className="text-center text-2xl text-orange-500 ">
                       <button>

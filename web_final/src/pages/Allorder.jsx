@@ -54,14 +54,13 @@ function Allorder() {
   }, [reload]);
   return (
     <div className="w-screen bg-base  min-h-screen bg-repeat-y bg-cover pb-20 font-prom">
-      <div className=" pt-24 font-semibold text-xl md:text-2xl lg:text-3xl flex justify-center">
-        <div className=" bg-amber-600 text-center w-52 p-3 text-white rounded-full text-2xl">
-        All Order
-
-        </div>
+       <div className=" pt-20  flex justify-center text-center ">
+        <div className=" bg-orange-600 text-white text-2xl w-52 p-2 rounded-xl z-10">All Orders</div>
       </div>
+        <div className="text-center pb-10 text-lg pt-3"> ดูทำไมไม่มีของมึงค่าา </div>
+      
 
-      <div className="grid grid-cols-1 gap-16 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 px-10 pt-10 ">
+      <div className="grid grid-cols-1 gap-16 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 px-10">
         {posts.map((item, inxdex) => {
           if (item.status=="use")
           return <Allorder_card 

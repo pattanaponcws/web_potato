@@ -33,7 +33,7 @@ function Checkout({ visible, onClose, cart, restslsit, menulsit, reload }) {
 
   const sendData = () => {
     {
-      !addnone && !phonenone
+      addnone && phonenone
         ? restslsit.map((rest, index) => {
             const data = cart.filter(
               (x) => x.menu.restaurants.restId == rest.restId
@@ -105,9 +105,9 @@ function Checkout({ visible, onClose, cart, restslsit, menulsit, reload }) {
               onChange={(x) => {
                 setAddress((y) => x.target.value);
                 if (x.target.value != "") {
-                  setAddnone(false);
+                  setAddnone(true);
                 }else{
-                  setAddnone(true)
+                  setAddnone(false)
                 }
               }}
               placeholder="Enter Address"
@@ -120,7 +120,8 @@ function Checkout({ visible, onClose, cart, restslsit, menulsit, reload }) {
               className="border border-orange-500 p-2 rounded mb-5"
               onChange={(x) => {
                 setTel((y) => x.target.value);
-                if (x.target.value != "" || x.target.value.length < 10) {
+                console.log(x.target.value.length);
+                if (x.target.value == "" || x.target.value.length < 10) {
                   setPhonenone(false);
                 }else{
                     setPhonenone(true)

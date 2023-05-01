@@ -65,8 +65,10 @@ const Login = () => {
   };
 
   return (
-    <div className="p-14 lg:p-20 w-screen h-screen bg-login bg-cover flex  items-center">
+    <div className="w-screen h-screen bg-log bg-cover font-prom">
       {/* {JSON.stringify(state)} */}
+      <div className="grid lg:grid-cols-2 grid-cols-1">
+      <div className="flex flex-col items-center justify-center h-screen">
       <div className=" bg-amber-300  bg-opacity-60 w-[30rem] p-9 sm:p-16 rounded-2xl ">
         <div className=" flex justify-between pb-10">
           <div>
@@ -140,6 +142,19 @@ const Login = () => {
         >
           Sign in
         </button>
+      </div>
+      </div>
+      </div>
+      <div className="">
+            <img
+              className=" invisible lg:visible animate-movingUpandDown z-10 absolute w-[50vw] top-[0vh] right-[0vw]"
+              src="./src/assets/sign.png"
+            />
+             <img
+              className=" invisible md:visible animate-[popUp_3s] md:absolute w-[264px] -left-[10vw] -top-[97px] "
+              src="./src/assets/home/Ellipse7.png"
+            />
+              
       </div>
     </div>
   );

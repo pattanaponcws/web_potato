@@ -48,7 +48,7 @@ const Navbar = (props) => {
     })
       .then((response) => {
         setCart(response.data);
-        //console.log(response.data);
+        //console.log(response.data); 
         //console.log(response.data);
       })
       .catch((err) => {
@@ -94,7 +94,6 @@ const Navbar = (props) => {
   }, [props.reload[0]]);
   Count();
   const [aof, setAof] = useState(true);
-  console.log(drop);
 
   return (
     <nav
@@ -185,6 +184,7 @@ const Navbar = (props) => {
                           onClick={() => {
                             localStorage.removeItem("token");
                           }}
+                          href="/"
                           className="flex p-2 font-medium text-gray-500 rounded-md  hover:bg-gray-100 hover:text-black"
                         >
                           Logout
@@ -201,14 +201,14 @@ const Navbar = (props) => {
                 <li>
                   <a onClick={() => setDrop(!drop)} href="/Signup">
                     <button className="font-bold bg-orange-600 text-l text-white px-5 py-2 rounded-full hover:bg-orange-700 duration-500">
-                      Sing up
+                      Sign up
                     </button>
                   </a>
                 </li>
                 <li>
                   <a onClick={() => setDrop(!drop)} href="/Login">
                     <button className="font-bold bg-orange-600 text-l text-white px-5 py-2 rounded-full hover:bg-orange-700 duration-500">
-                      Login
+                      Sign in
                     </button>
                   </a>
                 </li>

@@ -83,7 +83,7 @@ function Receive_card({ menu, accept,setreload }) {
                         <div>{item.countFood} X</div>
                         <div>{item.menu.menuFood}</div>
                       </div>
-                      <div className="text-base">{item.price} $</div>
+                      <div className="text-base">{item.price} ฿</div>
                     </li>
                   );
                 })}
@@ -92,19 +92,25 @@ function Receive_card({ menu, accept,setreload }) {
                   <div className="flex justify-between gap-x-2 text-lg  ">
                     <div>ราคารวม</div>
                   </div>
-                  <div className="text-lg">{total} $</div>
-                </li>
-
-                {/* accept */}
-                <li className="flex flex-row justify-between">
+                  <div className="text-lg">{total} ฿</div>
+                </li>             
+              </ul>
+               {/* accept */}
+               
+               <div className="flex">
+                <div className="mx-4">
                   <button onClick={Complete} className="mt-4 rounded-md bg-orange-400 py-1 px-2 text-sm hover:bg-orange-600">
                     Complete
                   </button>
+                </div>
+                <div className="mx-4">
+
                   <button onClick={Cancel} className="mt-4 rounded-md bg-orange-400 py-1 px-2 text-sm hover:bg-orange-600">
                     Cancel
                   </button>
-                </li>
-              </ul>
+                </div>
+              
+               </div>
             </div>
           </div>
         </div>

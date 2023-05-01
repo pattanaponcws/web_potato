@@ -79,8 +79,8 @@ const Signup = () => {
   };
 
   return (
-    <div className=" pt-20 w-screen h-screen bg-login bg-cover flex justify-center items-center">
-      <div className="bg-amber-300  bg-opacity-60 w-[30rem] p-6 sm:p-16  rounded-2xl">
+    <div className=" pb-10 w-screen h-screen bg-amber-100 bg-cover flex justify-center items-center font-prom">
+      <div className="bg-amber-300  bg-opacity-60 w-[30rem] p-6 sm:p-16  rounded-2xl z-10">
         <div className=" flex justify-between pb-7">
           <div>
             <div className=" flex text-xl font-bold gap-2 pb-1">
@@ -174,6 +174,24 @@ const Signup = () => {
         >
           Create account
         </button>
+      </div>
+      <div>
+      <img
+              className=" invisible md:visible animate-[popUp_3s] md:absolute w-[264px] -left-[10vw] -top-[97px] "
+              src="./src/assets/home/Ellipse7.png"
+            />
+            <img
+              className=" animate-[popUp_3s] md:visible absolute top-[10vh] w-28 right-[10vw]"
+              src="./src/assets/home/Ellipse7.png"
+            />
+      <img
+              className="z-0 bottom-0 animate-[popUp_3s] md:visible absolute w-[50vw] right-10 opacity-90"
+              src="./src/assets/home/Ellipse10.png"
+            />
+           <img
+              className=" invisible md:visible animate-[popUp_3s] md:absolute w-[100px] left-[8vw] bottom-[200px] "
+              src="./src/assets/home/Ellipse11.png"
+            />
       </div>
     </div>
   );

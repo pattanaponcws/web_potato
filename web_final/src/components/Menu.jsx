@@ -41,7 +41,7 @@ function Menu(props) {
   return (
     <div className="">
       <div className="overflow-hidden rounded-t-2xl " key={props.index}>
-        <div className="h-40 w-full object-cover rounded-t-xl overflow-hidden bg-white">
+        <div className=" h-40 w-full object-cover rounded-t-xl overflow-hidden bg-white">
           <img src={props.menu.menuPic} alt={props.menu.menuFood} />
         </div>
       </div>
@@ -92,7 +92,7 @@ function Menu(props) {
           <button
             type="button"
             onClick={AddtoCart}
-            className="py-2 px-5 bg-amber-100 text-sm lg:text-lg hover:bg-orange-600 hover:text-amber-100  focus:ring-orange-600 focus:ring-offset-amber-200  text-orange-600 w-full transition ease-in duration-200 text-center font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full  "
+            className="py-2 px-2 bg-amber-100 text-sm lg:text-lg hover:bg-orange-600 hover:text-amber-100  focus:ring-orange-600 focus:ring-offset-amber-200  text-orange-600 w-full transition ease-in duration-200 text-center font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full  "
           >
             Add to Cart
           </button>

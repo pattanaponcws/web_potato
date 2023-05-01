@@ -45,24 +45,26 @@ function Recieve() {
     fetchData();
   }, [reload]);
   return (
-    <div className="w-screen bg-base  min-h-screen bg-repeat-y bg-cover pb-20">
-      <div className=" pt-24 font-bold text-xl md:text-2xl lg:text-3xl flex justify-center">
-        Receiving Order
-      </div>
+    <div className="w-screen bg-base  min-h-screen bg-repeat-y bg-cover pb-20 font-prom">
+       <div className=" pt-20  flex justify-center text-center">
+       <div className=" bg-orange-600 text-white text-2xl  w-52 p-2 rounded-xl">Receiving Order</div>
+       
+     </div>
+     <div className="text-center text-lg pt-3">คำสั่งซื้อที่รับมา</div> 
       <div className=" my-14">
-        <button  href="/" className="fixed z-50 top-20 right-10 sm:right-6 border-t-4 font-bold border-b-4 border-r-4 border-orange-600 bg-amber-400 w-10 h-10  rounded-r-2xl  flex justify-center items-center text-white text-lg sm:text-xl hover:bg-orange-600  duration-300">
+        <button  href="/" className="fixed z-20 top-20 right-10 sm:right-6 border-t-4 font-bold border-b-4 border-r-4 border-orange-600 bg-amber-400 w-10 h-10  rounded-r-2xl  flex justify-center items-center text-white text-lg sm:text-xl hover:bg-orange-600  duration-300">
       <a href="/Post">
           <FiBell />
       </a>
         </button>
       <a href="/Receive">
-        <button className="fixed z-50 top-20 right-20 sm:right-16 border-4 font-bold border-orange-600 bg-amber-400 w-10 h-10 rounded-l-2xl   flex justify-center items-center text-white text-lg sm:text-xl hover:bg-orange-600  duration-300">
+        <button className="fixed z-20 top-20 right-20 sm:right-16 border-4 font-bold border-orange-600 bg-amber-400 w-10 h-10 rounded-l-2xl   flex justify-center items-center text-white text-lg sm:text-xl hover:bg-orange-600  duration-300">
           <FiDownload />
         </button>
       </a>
       </div>
 
-      <div className="grid grid-cols-1 gap-16 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 px-10 pt-10 ">
+      <div className="grid grid-cols-1 gap-16 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 px-10  ">
         {accept.map((a,index) => {
           return (<Recieve_card menu={menu} accept={a} setreload={setreload}/>);
         })}

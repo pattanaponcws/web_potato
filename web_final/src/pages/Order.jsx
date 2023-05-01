@@ -41,7 +41,7 @@ function Order(props) {
          <div className=" pt-20  flex justify-center text-center font-prom">
         <div className=" bg-orange-600 text-white text-2xl w-52 p-2 rounded-xl">Menu</div>
       </div>
-        <div className="text-center pb-10 text-lg pt-3">**วันนี้อยากทานอะไรดี**</div>
+        <div className="text-center pb-10 text-lg pt-3"> เลือกเมนูที่ต้องการฝากซื้อ </div>
       <div className="">
         <div class="grid grid-cols-1 gap-14 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 px-10 lg:px-40">
           {menus.map((menu, index) => (
