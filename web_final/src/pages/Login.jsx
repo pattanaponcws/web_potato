@@ -151,7 +151,7 @@ const Login = () => {
       </div>
       <div className="">
         <img
-          className="z-0 animate__animated animate__fadeInRight invisible lg:visible z-10 absolute w-[50vw] -top-[15vh] right-[0vw]"
+          className="z-10 animate__animated animate__fadeInRight invisible lg:visible absolute w-[50vw] -top-[15vh] right-[0vw]"
           src="./src/assets/sign.png"
         />
         <img
