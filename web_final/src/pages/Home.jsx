@@ -8,7 +8,7 @@ function Home() {
   return (
     <div>
       {localStorage.getItem("token") ? (
-        <div className=" relative w-screen h-screen bg-base1 bg-cover  items-center font-prom">
+        <div className=" relative w-screen h-screen overflow-hidden bg-base1 bg-cover  items-center font-prom">
           <div className=" grid lg:grid-cols-2 lg:px-40">
 
           <div className="flex flex-col justify-center h-screen">
@@ -40,7 +40,7 @@ function Home() {
           </div>
           <div className="">
             <img
-              className=" invisible lg:visible animate-movingUpandDown z-10 absolute w-[40vw] top-[15vh] right-[10vw]"
+              className=" invisible lg:visible animate-movingUpandDown z-10 absolute w-[35vw] top-[10vh] right-[10vw]"
               src="./src/assets/grab.png"
             />
             <img
@@ -62,7 +62,7 @@ function Home() {
           </div>
         </div>
       ) : (
-        <div className=" relative w-screen h-screen bg-base1 bg-cover flex md:px-24 lg:px-56 items-center font-prom">
+        <div className=" relative w-screen overflow-hidden h-screen bg-base1 bg-cover flex md:px-24 lg:px-56 items-center font-prom">
           <div className="pt-20 md:mx-10 z-30 ml-10 md:ml-0">
             <div className="pb-3">
               <div>

@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-function Allorder_card({ item, menu,setreload, setR  ,setPush ,setText}) {
+function Allorder_card({ item, menu, setreload, setR, setPush, setText }) {
   const data = menu.filter((x) => x.post.postId == item.postId);
-  
+
   let total = 0;
   function handelrAccept() {
     console.log(item.restaurants.restName);
+    console.log(item);
     setR(item.restaurants.restName);
     setPush(true);
     setText("Accept");
@@ -18,11 +19,10 @@ function Allorder_card({ item, menu,setreload, setR  ,setPush ,setText}) {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
       data: JSON.stringify({
-        post: item.postId
+        post: item.postId,
       }),
     })
       .then(function (response) {
-        
         setreload((x) => x + 1);
       })
       .catch(function (response) {
@@ -49,7 +49,9 @@ function Allorder_card({ item, menu,setreload, setR  ,setPush ,setText}) {
                 <div className="flex justify-between gap-x-2 text-base sm:text-lg ">
                   <div>Name :</div>
                 </div>
-                <div className="text-base sm:text-lg">{item.user.username}</div>
+                <div className="text-base sm:text-lg">
+                  {item.user.displayname}
+                </div>
               </li>
               <li className="flex justify-between items-center gap-x-3">
                 <div className="flex justify-between gap-x-2 text-base sm:text-lg ">
@@ -73,7 +75,7 @@ function Allorder_card({ item, menu,setreload, setR  ,setPush ,setText}) {
                         <div>{ls.countFood} X</div>
                         <div>{ls.menu.menuFood}</div>
                       </div>
-                      <div className="text-base ">{ls.price} $</div>
+                      <div className="text-base ">{ls.price} ฿</div>
                     </li>
                   );
                 })}
@@ -82,7 +84,7 @@ function Allorder_card({ item, menu,setreload, setR  ,setPush ,setText}) {
                   <div className="flex justify-between gap-x-2 text-lg ">
                     <div>ราคารวม</div>
                   </div>
-                  <div className="text-lg ">{total} $</div>
+                  <div className="text-lg ">{total} ฿</div>
                 </li>
 
                 {/* accept */}

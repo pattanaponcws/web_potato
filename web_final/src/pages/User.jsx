@@ -7,7 +7,9 @@ const User = () => {
   // pwShow.addEventListener("click",()=>{})
   const [user, setuser] = useState([]);
   const [spaceCheck, setSpacecheck] = useState(false);
-
+  const [password,setpassword] = useState("");
+  const [confirmpassword,setconfirmpassword] = useState("");
+  const [displayname,setdisplayname] = useState("");
   const[showConfirm,setShowconfirm]=useState(false);
   const handleOnClose = () => setShowconfirm(false);
 
@@ -22,12 +24,12 @@ const User = () => {
     })
       .then((response) => {
         setuser(response.data);
+        setdisplayname(response.data.displayname)
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  console.log(user);
   useEffect(() => {
     fetchData();
   }, []);
@@ -52,14 +54,6 @@ const User = () => {
             id="username"
             type="text"
             value={user.username}
-            onChange={(e) => {
-              if (e.target.value[e.target.value.length - 1] == " ") {
-                setSpacecheck(true);
-              } else {
-                setuser(e.target.value);
-                console.log(e.target.value);
-              }
-            }}
           />
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5"
@@ -68,9 +62,17 @@ const User = () => {
           Display Name
           <input
             className="shadow appearance-none border rounded-lg w-72 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
+            id="displayname"
             type="text"
-            value={user.displayname == null ? "" : user.displayname}
+            value={displayname}
+            onChange={(e) => {
+              if (e.target.value[e.target.value.length - 1] == " ") {
+                setSpacecheck(true);
+              } else {
+                setdisplayname(e.target.value);
+                console.log(e.target.value);
+              }
+            }}
           />
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5"
@@ -92,7 +94,9 @@ const User = () => {
             className="shadow appearance-none border rounded-lg w-72 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
-            value={user.password}
+            placeholder="new password"
+            onChange={e=>setpassword((x)=>e.target.value)}
+            
           />
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5"
@@ -103,12 +107,18 @@ const User = () => {
             className="shadow appearance-none border rounded-lg w-72 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
-            value={user.password}
+            placeholder="confirm password"
+            onChange={e=>setconfirmpassword((x)=>e.target.value)}
           />
         </div>
         <div className="pt-10">
           <button className="font-bold rounded-lg bg-orange-600 text-[20px] text-white px-5 py-2  hover:bg-orange-700 duration-500 text-center "
-           onClick={()=>setShowconfirm(true)}
+           onClick={()=>{
+            if(password==confirmpassword)
+              return setShowconfirm(true)
+            else
+              window.alert('รหัสไม่ตรงโว้ยยยยย')
+           }}
            >
             Save
           </button>
@@ -116,6 +126,9 @@ const User = () => {
       </div>
       <div>
         <Password 
+         password={password==""?user.password:password}
+         userpassword={user.password}
+         displayname={displayname}
          onClose={handleOnClose}
          visible={showConfirm}/> 
       </div>

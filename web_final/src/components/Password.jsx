@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-
-function Password({ visible, onClose }) {
+import axios from "axios";
+function Password({ visible, onClose,displayname,password,userpassword }) {
+  const [yourpassword,setyourpassword] = useState("");
   const handleOnClose = (e) => {
+    console.log(e);
     if (e.target.id === "container") onClose();
   };
 
   if (!visible) return null;
-
+  console.log(displayname);
 return (
-    <div className=" font-mali">
+    <div className=" font-prom">
 
       <div
         id="container"
-        onClick={()=>handleOnClose()}
+        onClick={(e)=>handleOnClose(e)}
         className="fixed inset-0 bg-opacity-30 bg-black backdrop-blur-sm flex justify-center items-center"
       >
+
         <div class=" flex justify-center items-center ">
           <div class="absolute top-[250px] bg-white shadow-md rounded-2xl p-10 border-orange-600 border-4">
-            <div class=" flex flex-col font-mali">
+            <div class=" flex flex-col font-prom">
               <label
                 class="block uppercase tracking-wide text-gray-700 font-bold  "
                 for="first-name"
@@ -31,15 +34,35 @@ return (
                 id="password2"
                 type="password"
                 placeholder="Enter your password"
+                onChange={(e)=>setyourpassword((x)=>e.target.value)}
               />
               
               </div>
              
               <div className="mt-7 text-center">
                 <button
-                  className=" font-bold rounded-lg bg-orange-600 text-[20px] text-white px-5 py-2  hover:bg-orange-700 duration-500 font-mali "
+                  className=" font-bold rounded-lg bg-orange-600 text-[20px] text-white px-5 py-2  hover:bg-orange-700 duration-500 font-prom "
                   onClick={() => {
-                    onClose();
+                    if(yourpassword==userpassword)
+                    {
+                      onClose();
+                      axios({
+                        method: "post",
+                        url: "http://172.20.10.4:5174/api/Edit",
+                        headers: {
+                          "Content-Type": "application/json",
+                          Authorization: "Bearer " + localStorage.getItem("token"),
+                        },
+                        data:{
+                          password:password,
+                          displayname:displayname
+                        }
+                      })
+                    }
+                    else
+                    {
+                      alert("ใส่รหัสผ่านใหถูกเส๊")
+                    }
                   }}
                 >
                   Confirm

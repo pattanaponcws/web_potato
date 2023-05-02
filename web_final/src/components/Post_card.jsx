@@ -32,7 +32,7 @@ function Post_card({ post, menu }) {
             {post.restaurants.restName}
           </h2>
           <h2 className="mx-4 text-base sm:text-lg text-center ">
-            Status : {post.status}
+            Status : {post.status=="use"?"waiting":"sending"}
             </h2>  
           <ul className="text-center p-2">
             {menu.map((x, i) => {
