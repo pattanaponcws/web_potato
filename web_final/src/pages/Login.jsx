@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import "animate.css";
 
 const Login = () => {
+  document.title = "Log in";
   const [state, setState] = useState({
     username: "",
     password: "",
