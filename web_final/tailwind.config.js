@@ -20,7 +20,7 @@ module.exports = {
         base: "url('assets/base_bg.png')",
         deliver: "url('assets/deliver.png')",
         base1: "url('assets/base1.png')",
-        log: "url('assets/logg.png')",
+        log: "url('assets/Rectangle1.png')",
       },
 
       keyframes: {
@@ -58,7 +58,7 @@ module.exports = {
         moveDown: " moveDown 1s ease-in-out",
         moveUp: " moveUp 1s ease-in-out",
         popUp:"popUp ease-in-out",
-        movingUpandDown:'movingUpandDown 4s ease-in-out infinite'
+        movingUpandDown:'movingUpandDown'
       },
     },
   },

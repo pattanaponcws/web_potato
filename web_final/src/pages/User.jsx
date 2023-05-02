@@ -34,14 +34,14 @@ const User = () => {
     fetchData();
   }, []);
   return (
-    <div className="w-screen  min-h-screen bg-repeat-y bg-cover pb-20  bg-[url('https://sv1.picz.in.th/images/2023/04/27/ycNIzv.png')] font-prom">
+    <div className="w-screen  min-h-screen bg-repeat-y bg-cover pb-20  bg-base1 font-prom">
       <div className="pt-[100px] flex flex-col justify-center items-center ">
-        <div className="">
-          <button className="font-bold rounded-md bg-orange-600 text-[30px] text-white px-5 py-2  hover:bg-orange-700 duration-500 text-center ">
+        <div className="z-40">
+          <button className="font-bold rounded-md bg-orange-600 text-[30px]  text-white px-5 py-2  hover:bg-orange-700 duration-500 text-center ">
             Account Setting
           </button>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col z-40">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 pt-5 text-left"
             for="first-name"
@@ -131,6 +131,11 @@ const User = () => {
          displayname={displayname}
          onClose={handleOnClose}
          visible={showConfirm}/> 
+      </div>
+      <div className="">
+        <img className="animate-[movingUpandDown_2s_ease-in-out_1s_infinite] z-0    absolute top-20 -left-80 h-[80vh] blur-md " src="./src/assets/re/Ellipse28.png" />
+        <img className="animate-[movingUpandDown_5s_ease-in-out_1s_infinite] z-0 invisible md:visible  absolute top-20 left-[60vw] h-[20vh] blur-md" src="./src/assets/re/Ellipse28.png" />
+        <img className="animate-[movingUpandDown_3s_ease-in-out_1s_infinite] z-0 invisible md:visible  absolute bottom-20 right-[2rem] h-[20vh] blur-md" src="./src/assets/re/Ellipse28.png" />
       </div>
     </div>
   );
