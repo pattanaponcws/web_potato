@@ -160,7 +160,7 @@ const Login = () => {
           src="./src/assets/logg-right.png"
         />
         <img
-          className=" invisible md:visible animate-[popUp_3s] md:absolute w-[264px] -left-[10vw] -top-[97px] "
+          className=" invisible md:visible animate-[popUp_3s] md:absolute w-[264px] z-0 left-[2vw] bottom-[97px] "
           src="./src/assets/home/Ellipse7.png"
         />
       </div>

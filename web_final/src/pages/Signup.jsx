@@ -68,14 +68,17 @@ const Signup = () => {
   const { email, username, password, con_password } = state;
   const inputValue = (name) => (event) => {
     setState({ ...state, [name]: event.target.value });
-    if (
-      event.target.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
-    ) {
-      setError(false);
-    } else {
-      setError(true);
+    if (name == "email") {
+      if (
+        event.target.value.match(
+          /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        )
+      ) {
+        setError(false);
+      } else {
+        setError(true);
+      }
     }
-    console.log(event.target.value);
   };
 
   return (
@@ -176,22 +179,22 @@ const Signup = () => {
         </button>
       </div>
       <div>
-      <img
-              className=" invisible md:visible animate-[popUp_3s] md:absolute w-[264px] -left-[10vw] -top-[97px] "
-              src="./src/assets/home/Ellipse7.png"
-            />
-            <img
-              className=" animate-[popUp_3s] md:visible absolute top-[10vh] w-28 right-[10vw]"
-              src="./src/assets/home/Ellipse7.png"
-            />
-      <img
-              className="z-0 bottom-0 animate-[popUp_3s] md:visible absolute w-[50vw] right-10 opacity-90"
-              src="./src/assets/home/Ellipse10.png"
-            />
-           <img
-              className=" invisible md:visible animate-[popUp_3s] md:absolute w-[100px] left-[8vw] bottom-[200px] "
-              src="./src/assets/home/Ellipse11.png"
-            />
+        <img
+          className=" invisible md:visible animate-[popUp_3s] md:absolute w-[264px] -left-[10vw] -top-[97px] "
+          src="./src/assets/home/Ellipse7.png"
+        />
+        <img
+          className=" animate-[popUp_3s] md:visible absolute top-[10vh] w-28 right-[10vw]"
+          src="./src/assets/home/Ellipse7.png"
+        />
+        <img
+          className="z-0 bottom-0 animate-[popUp_3s] md:visible absolute w-[50vw] right-10 opacity-90"
+          src="./src/assets/home/Ellipse10.png"
+        />
+        <img
+          className=" invisible md:visible animate-[popUp_3s] md:absolute w-[100px] left-[8vw] bottom-[200px] "
+          src="./src/assets/home/Ellipse11.png"
+        />
       </div>
     </div>
   );
