@@ -69,7 +69,7 @@ const Login = () => {
     <div className="w-screen h-screen bg-log bg-cover font-prom">
       {/* {JSON.stringify(state)} */}
       <div className="grid lg:grid-cols-2 grid-cols-1">
-        <div className="z-40 flex flex-col items-center justify-center h-screen">
+        <div className="z-20 flex flex-col items-center justify-center h-screen">
           <div className=" bg-amber-300  bg-opacity-60 w-[30rem] p-9 sm:p-16 rounded-2xl ">
             <div className=" flex justify-between pb-10">
               <div>

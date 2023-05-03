@@ -10,44 +10,43 @@ function Home() {
       {localStorage.getItem("token") ? (
         <div className=" relative w-screen h-screen overflow-hidden bg-base1 bg-cover  items-center font-prom">
           <div className=" grid lg:grid-cols-2 lg:px-40">
-
-          <div className="flex flex-col justify-center h-screen">
-            <div>
-              <h1 className="text-4xl text-center sm:text-5xl lg:text-6xl font-bold animate__animated animate__fadeInDown">
-                Welcome To
-              </h1>
-            </div>
-            <div className="flex justify-center">
-              <div className=" flex ">
-                <div className=" text-4xl sm:text-5xl lg:text-6xl font-bold animate__animated animate__fadeInDown">
-                  Potato
-                </div>
-                <div className=" text-4xl sm:text-5xl lg:text-6xl font-bold text-amber-600  mx-4 animate__animated animate__fadeInDown">
-                  Delivery
+            <div className="flex flex-col justify-center h-screen">
+              <div>
+                <h1 className="text-4xl text-center sm:text-5xl lg:text-6xl font-bold animate__animated animate__fadeInDown">
+                  Welcome To
+                </h1>
+              </div>
+              <div className="flex justify-center">
+                <div className=" flex ">
+                  <div className=" text-4xl sm:text-5xl lg:text-6xl font-bold animate__animated animate__fadeInDown">
+                    Potato
+                  </div>
+                  <div className=" text-4xl sm:text-5xl lg:text-6xl font-bold text-amber-600  mx-4 animate__animated animate__fadeInDown">
+                    Delivery
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <a href="/restaurant" className=" flex justify-center">
-              <button
-                className=" my-10 flex justify-center items-center bg-amber-600 text-white rounded-full text-sm sm:text-lg lg:text-xl font-bold 
+              <a href="/restaurant" className=" flex justify-center">
+                <button
+                  className=" my-10 flex justify-center items-center bg-amber-600 text-white rounded-full text-sm sm:text-lg lg:text-xl font-bold 
        py-3 px-12 animate__animated animate__zoomIn"
-              >
-                ORDER NOW
-              </button>
-            </a>
-          </div>
+                >
+                  ORDER NOW
+                </button>
+              </a>
+            </div>
           </div>
           <div className="">
             <img
-              className=" invisible lg:visible animate-movingUpandDown z-10 absolute w-[35vw] top-[10vh] right-[10vw]"
+              className="animate__animated animate__slideInLeft invisible lg:visible animate-movingUpandDown z-10 absolute w-[35vw] top-[10vh] right-[10vw]"
               src="./src/assets/grab.png"
             />
             <img
               className=" z-0 absolute bottom-0 w-[50vw] right-10 animate-[popUp_2s] opacity-90"
               src="./src/assets/home/Ellipse10.png"
             />
-           <img
+            <img
               className=" invisible md:visible animate-[popUp_3s] md:absolute w-[100px] left-[8vw] bottom-[200px] "
               src="./src/assets/home/Ellipse11.png"
             />
